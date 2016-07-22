@@ -25,7 +25,7 @@
 	and you can then view the JTL in a browser
 -->
 
-<xsl:output method="html" indent="yes" encoding="UTF-8" doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN" />
+<xsl:output method="html" indent="yes" encoding="UTF-8"  />
 
 <!-- Defined parameters (overrideable) -->
 <xsl:param    name="showData" select="'n'"/>
@@ -155,7 +155,7 @@
 	<h2>Summary</h2>
 	<table align="center" class="details" border="0" cellpadding="5" cellspacing="2" width="95%">
 		<tr valign="top">
-			<th># Samples</th>
+			<th>Case</th>
 			<th>Failures</th>
 			<th>Success Rate</th>
 			<th>Average Time</th>
@@ -215,11 +215,11 @@
 </xsl:template>
 
 <xsl:template name="pagelist">
-	<h2>Pages</h2>
+	<h2>Interface</h2>
 	<table align="center" class="details" border="0" cellpadding="5" cellspacing="2" width="95%">
 		<tr valign="top">
 			<th>URL</th>
-			<th># Samples</th>
+			<th>Case</th>
 			<th>Failures</th>
 			<th>Success Rate</th>
 			<th>Average Time</th>

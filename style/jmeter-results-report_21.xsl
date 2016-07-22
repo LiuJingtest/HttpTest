@@ -25,7 +25,7 @@
 	and you can then view the JTL in a browser
 -->
 	
-<xsl:output method="html" indent="yes" encoding="UTF-8" doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN" />
+<xsl:output method="html" indent="yes" encoding="UTF-8" />
 
 <xsl:param name="titleReport" select="'Load Test Results'"/>
 <xsl:param name="dateReport" select="'date not defined'"/>

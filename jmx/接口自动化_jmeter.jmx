@@ -8,7 +8,7 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
-      <stringProp name="TestPlan.user_define_classpath">E:\ApiTest\libs</stringProp>
+      <stringProp name="TestPlan.user_define_classpath">E:\Project\Coding\LOCAL\HttpTest\libs</stringProp>
     </TestPlan>
     <hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="奇途接口自动化" enabled="true">
@@ -51,6 +51,12 @@
               <stringProp name="Argument.value">${__property(base_dir,base_dir)} </stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
               <stringProp name="Argument.desc">用户配置中的工程路径</stringProp>
+            </elementProp>
+            <elementProp name="libs_dir" elementType="Argument">
+              <stringProp name="Argument.name">libs_dir</stringProp>
+              <stringProp name="Argument.value">${__property(libs_dir,libs_dir)} </stringProp>
+              <stringProp name="Argument.desc">用户配置中的依赖jar包路径</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
           </collectionProp>
         </Arguments>
@@ -104,7 +110,7 @@
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
-          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
           <stringProp name="HTTPSampler.path">/user/login</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -130,12 +136,11 @@ vars.put(&quot;encode_pwd&quot;,encode_pwd);
 </stringProp>
           </BeanShellPreProcessor>
           <hashTree/>
-          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="获取用例数" enabled="true">
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="获取用例数以及第一组测试数据" enabled="true">
             <boolProp name="resetInterpreter">false</boolProp>
             <stringProp name="parameters"></stringProp>
             <stringProp name="filename"></stringProp>
-            <stringProp name="script">import com.supernano.testutil.*;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+            <stringProp name="script">import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.*;
 
@@ -143,9 +148,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-
 String file = vars.get(&quot;path&quot;);
-log.info(&quot;------------------------------------&quot;+file);
 FileInputStream ExcelFile = null;
 
 try {
@@ -164,13 +167,24 @@ try {
 }
 XSSFSheet excelWSheet = excelWBook.getSheet(&quot;test&quot;);
 
+//String num1 = vars.get(&quot;num&quot;);
+//int num = Integer.valueOf(num1).intValue();
 String casenum = String.valueOf(excelWSheet.getLastRowNum());
 vars.put(&quot;casenum&quot;,casenum);
+vars.put(&quot;name&quot;,(String)excelWSheet.getRow(1).getCell(3).getStringCellValue());
+vars.put(&quot;url&quot;,(String)excelWSheet.getRow(1).getCell(4).getStringCellValue());
+vars.put(&quot;method&quot;,(String)excelWSheet.getRow(1).getCell(5).getStringCellValue());
 
-log.info(&quot;------------------------------------&quot;+vars.get(&quot;host&quot;));
+if(excelWSheet.getRow(1).getCell(8)!=null){
+	vars.put(&quot;request&quot;,(String)excelWSheet.getRow(1).getCell(8).getStringCellValue());
+}else{
+	vars.put(&quot;request&quot;,&quot;&quot;);
+}
 
-
-
+String response = new String(((String)excelWSheet.getRow(1).getCell(9).getStringCellValue()).getBytes(&quot;UTF-8&quot;));
+log.info(&quot;----------------------------&quot;+response)
+//vars.put(&quot;response&quot;,(String)excelWSheet.getRow(1).getCell(9).getStringCellValue());
+//vars.put(&quot;response&quot;,response);
 
 
 </stringProp>
@@ -210,31 +224,43 @@ log.info(&quot;------------------------------------&quot;+vars.get(&quot;host&qu
             <boolProp name="CounterConfig.per_user">false</boolProp>
           </CounterConfig>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="过度接口" enabled="true">
-            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
-              <collectionProp name="Arguments.arguments"/>
-            </elementProp>
-            <stringProp name="HTTPSampler.domain"></stringProp>
-            <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-            <stringProp name="HTTPSampler.response_timeout"></stringProp>
-            <stringProp name="HTTPSampler.protocol"></stringProp>
-            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path"></stringProp>
-            <stringProp name="HTTPSampler.method">GET</stringProp>
-            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-            <boolProp name="HTTPSampler.monitor">false</boolProp>
-            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-          </HTTPSamplerProxy>
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="GET请求" enabled="true">
+            <stringProp name="IfController.condition">&quot;${method}&quot; == &quot;GET&quot;</stringProp>
+            <boolProp name="IfController.evaluateAll">false</boolProp>
+          </IfController>
           <hashTree>
-            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="获取测试数据" enabled="true">
-              <boolProp name="resetInterpreter">false</boolProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="script">import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${name}" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">${request}&amp;auth_app=${auth_app}&amp;user_id=${uid}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol"></stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+              <stringProp name="HTTPSampler.path">${url}</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="获取测试数据" enabled="true">
+                <boolProp name="resetInterpreter">false</boolProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="script">import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.*;
 
@@ -277,41 +303,9 @@ vars.put(&quot;response&quot;,(String)excelWSheet.getRow(num).getCell(9).getStri
 
 
 </stringProp>
-            </BeanShellPreProcessor>
-            <hashTree/>
-          </hashTree>
-          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="GET请求" enabled="true">
-            <stringProp name="IfController.condition">&quot;${method}&quot; == &quot;GET&quot;</stringProp>
-            <boolProp name="IfController.evaluateAll">false</boolProp>
-          </IfController>
-          <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${name}" enabled="true">
-              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${request}&amp;auth_app=${auth_app}&amp;user_id=${uid}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-              <stringProp name="HTTPSampler.domain"></stringProp>
-              <stringProp name="HTTPSampler.port"></stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              <stringProp name="HTTPSampler.protocol"></stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">${url}</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <boolProp name="HTTPSampler.monitor">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            </HTTPSamplerProxy>
-            <hashTree/>
+              </BeanShellPreProcessor>
+              <hashTree/>
+            </hashTree>
             <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
               <collectionProp name="Asserion.test_strings">
                 <stringProp name="-627183259">${response}</stringProp>
@@ -350,7 +344,7 @@ vars.put(&quot;response&quot;,(String)excelWSheet.getRow(num).getCell(9).getStri
               <stringProp name="HTTPSampler.connect_timeout"></stringProp>
               <stringProp name="HTTPSampler.response_timeout"></stringProp>
               <stringProp name="HTTPSampler.protocol"></stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
               <stringProp name="HTTPSampler.path">${url}</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -360,7 +354,57 @@ vars.put(&quot;response&quot;,(String)excelWSheet.getRow(num).getCell(9).getStri
               <boolProp name="HTTPSampler.monitor">false</boolProp>
               <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
             </HTTPSamplerProxy>
-            <hashTree/>
+            <hashTree>
+              <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="获取测试数据" enabled="true">
+                <boolProp name="resetInterpreter">false</boolProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="script">import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.xssf.usermodel.*;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+String file = vars.get(&quot;path&quot;);
+FileInputStream ExcelFile = null;
+
+try {
+	ExcelFile = new FileInputStream(file);
+
+} catch (FileNotFoundException e) {
+	e.printStackTrace();
+}
+XSSFWorkbook excelWBook = null;
+try {
+	excelWBook = (XSSFWorkbook) WorkbookFactory.create(ExcelFile);
+} catch (IOException e) {
+	e.printStackTrace();
+} catch (InvalidFormatException e) {
+	e.printStackTrace();
+}
+XSSFSheet excelWSheet = excelWBook.getSheet(&quot;test&quot;);
+
+String num1 = vars.get(&quot;num&quot;);
+int num = Integer.valueOf(num1).intValue();
+
+vars.put(&quot;name&quot;,(String)excelWSheet.getRow(num).getCell(3).getStringCellValue());
+vars.put(&quot;url&quot;,(String)excelWSheet.getRow(num).getCell(4).getStringCellValue());
+vars.put(&quot;method&quot;,(String)excelWSheet.getRow(num).getCell(5).getStringCellValue());
+
+if(excelWSheet.getRow(num).getCell(8)!=null){
+	vars.put(&quot;request&quot;,(String)excelWSheet.getRow(num).getCell(8).getStringCellValue());
+}else{
+	vars.put(&quot;request&quot;,&quot;&quot;);
+}
+vars.put(&quot;response&quot;,(String)excelWSheet.getRow(num).getCell(9).getStringCellValue());
+
+
+</stringProp>
+              </BeanShellPreProcessor>
+              <hashTree/>
+            </hashTree>
             <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
               <collectionProp name="Asserion.test_strings">
                 <stringProp name="-627183259">${response}</stringProp>

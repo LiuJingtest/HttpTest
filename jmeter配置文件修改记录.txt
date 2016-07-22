@@ -1,0 +1,8 @@
+修改配置文件记录：
+	1.修改了用户配置路径user.properties
+	2.修改了日志输出路径log_file
+	
+修改Jenkins安全策略：
+	地址：http://localhost:8080/script
+	代码：System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "sandbox; default-src 'self'; img-src '*'; style-src '*' 'unsafe-inline';")
+	

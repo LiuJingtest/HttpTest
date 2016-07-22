@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project name="ant-jmeter-test" default="run" basedir=".">
-    <tstamp><format property="report.datestamp" pattern="yyyy/MM/dd HH:mm"/></tstamp>
+	<!-- 设置时间格式 -->
+    <tstamp>
+		<format property="report.datestamp" pattern="yyyy/MM/dd HH:mm"/>
+	</tstamp>
 	
 	<!-- 报告标题 -->
 	<property name="report.title" value="自动化测试报告"/>
@@ -10,7 +13,7 @@
     <property name="jmeter.home" value="D:\mywork\Apache\Jmeter" />
 	
 	<!-- 工程路径路径-->
-	<property name="base.dir" value="E:\ApiTest"/>
+	<property name="base.dir" value="E:\Project\Coding\LOCAL\HttpTest"/>
 	
 	<!-- 报告输出路径 -->  
     <property name="report.dir" value="${base.dir}/Report" />
@@ -30,6 +33,9 @@
     <property name="jmeter.result.htmlName" value="${jmeter.result.html.dir}/${ReportName}.html" />
 	<property name="jmeter.result.htmlDebugName" value="${jmeter.result.htmlDebug.dir}/${ReportName}.html" />
     
+	<!-- 接收测试报告的邮箱 -->
+	<property name="mail_to" value="liujing3@supernano.com" />
+	
 	<!-- 清除报告文件夹，再创建 -->
 	<target name="clean">
 		<echo message="delete and mkdir" />
