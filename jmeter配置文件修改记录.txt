@@ -5,4 +5,5 @@
 修改Jenkins安全策略：
 	地址：http://localhost:8080/script
 	代码：System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "sandbox; default-src 'self'; img-src '*'; style-src '*' 'unsafe-inline';")
+	System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")
 	
