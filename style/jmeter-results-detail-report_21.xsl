@@ -28,7 +28,7 @@
 <xsl:output method="html" indent="yes" encoding="UTF-8"  />
 
 <!-- Defined parameters (overrideable) -->
-<xsl:param    name="showData" select="'n'"/>
+<xsl:param    name="showData" select="'y'"/>
 <xsl:param    name="titleReport" select="'Load Test Results'"/>
 <xsl:param    name="dateReport" select="'date not defined'"/>
 
@@ -43,6 +43,7 @@
 				}
 				table tr td, table tr th {
 					font-size: 68%;
+					word-break:break-all ;
 				}
 				table.details tr th{
 				    color: #ffffff;
@@ -50,10 +51,12 @@
 					text-align:center;
 					background:#2674a6;
 					white-space: nowrap;
+					word-break:break-all ;
 				}
 				table.details tr td{
 					background:#eeeee0;
 					white-space: nowrap;
+					word-break:break-all ;
 				}
 				h1 {
 					margin: 0px 0px 5px; font: 165% verdana,arial,helvetica
@@ -121,7 +124,9 @@
 			         document.getElementById(details_id+"_image").src = "expand.png";
 			         collapse(details_id);
 			      } 
-                           }
+                }
+				
+				
 			]]></script>
 		</head>
 		<body>
@@ -344,19 +349,19 @@
 
 				<table align="center" class="details" border="0" cellpadding="5" cellspacing="2" width="95%">
 				<tr valign="top">
-					<th>Response</th>
+					<th  style="width='10'">Response</th>
 					<th>Failure Message</th>
 					<xsl:if test="$showData = 'y'">
-					   <th>Response Data</th>
+					   <th style="word-break='break-all' ;">Response Data</th>
 					</xsl:if>
 				</tr>
 			
 				<xsl:for-each select="/testResults/*[@lb = current()/@lb][attribute::s='false']">
 					<tr>
-						<td><xsl:value-of select="@rc | @rs" /> - <xsl:value-of select="@rm" /></td>
+						<td id='status'><xsl:value-of select="@rc | @rs" /> - <xsl:value-of select="@rm" /></td>
 						<td><xsl:value-of select="assertionResult/failureMessage" /></td>
 						<xsl:if test="$showData = 'y'">
-							<td><xsl:value-of select="./binary" /></td>
+							<td><xsl:value-of select="responseData" /></td>
 						</xsl:if>
 					</tr>
 				</xsl:for-each>
