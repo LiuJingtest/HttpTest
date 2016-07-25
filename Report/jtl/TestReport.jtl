@@ -1,76 +1,414 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testResults version="1.2">
-<httpSample t="246" it="0" lt="246" ct="136" ts="1469290987902" s="true" lb="登录" rc="200" rm="OK" tn="奇途接口自动化 1-1" dt="text" by="700" sc="1" ec="0" ng="1" na="1" hn="PC-Liu">
+<httpSample t="80" it="0" lt="80" ct="43" ts="1469444249706" s="true" lb="登录：/user/login" rc="200" rm="OK" tn="奇途接口自动化 1-1" dt="text" by="721" sc="1" ec="0" ng="1" na="1" hn="liujing1">
   <responseHeader class="java.lang.String">HTTP/1.1 200 OK
-Server: nginx
-Date: Sat, 23 Jul 2016 16:23:08 GMT
+Server: nginx/1.8.0
+Date: Mon, 25 Jul 2016 10:57:12 GMT
 Content-Type: application/json
 Transfer-Encoding: chunked
 Connection: keep-alive
-X-Powered-By: PHP/5.6.9
+X-Powered-By: PHP/5.6.14
 Access-Control-Allow-Origin: *
 </responseHeader>
   <requestHeader class="java.lang.String">Connection: keep-alive
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 81
 Host: api.app.aiqitu.cn
-User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_77)
+User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_11)
 </requestHeader>
-  <responseData class="java.lang.String">{&quot;code&quot;:1,&quot;msg&quot;:&quot;\u767b\u5f55\u6210\u529f&quot;,&quot;data&quot;:{&quot;user_id&quot;:&quot;44&quot;,&quot;username&quot;:&quot;15200000000&quot;,&quot;password&quot;:&quot;670b14728ad9902aecba32e22fa4f6bd&quot;,&quot;tel&quot;:&quot;15200000000&quot;,&quot;email&quot;:&quot;&quot;,&quot;nickname&quot;:&quot;152****0000&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com&quot;,&quot;wechat_token&quot;:&quot;&quot;,&quot;source&quot;:&quot;2&quot;,&quot;qq_token&quot;:&quot;&quot;,&quot;weibo_token&quot;:&quot;&quot;,&quot;create_time&quot;:&quot;1467358832&quot;,&quot;semail_time&quot;:&quot;0&quot;,&quot;update_time&quot;:&quot;1469290988&quot;,&quot;status&quot;:&quot;1&quot;,&quot;auth_app&quot;:&quot;3ccabd5ff10fef7aac62e226b2e93bf3&quot;,&quot;login_time&quot;:&quot;1469290988&quot;,&quot;remove_time&quot;:&quot;0&quot;,&quot;is_del&quot;:&quot;0&quot;}}</responseData>
+  <responseData class="java.lang.String">{&quot;code&quot;:1,&quot;msg&quot;:&quot;\u767b\u5f55\u6210\u529f&quot;,&quot;data&quot;:{&quot;user_id&quot;:&quot;1&quot;,&quot;username&quot;:&quot;15200000000&quot;,&quot;password&quot;:&quot;670b14728ad9902aecba32e22fa4f6bd&quot;,&quot;tel&quot;:&quot;15200000000&quot;,&quot;email&quot;:&quot;&quot;,&quot;nickname&quot;:&quot;152****0000&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com&quot;,&quot;wechat_token&quot;:&quot;&quot;,&quot;source&quot;:&quot;2&quot;,&quot;qq_token&quot;:&quot;&quot;,&quot;weibo_token&quot;:&quot;&quot;,&quot;create_time&quot;:&quot;1469153789&quot;,&quot;semail_time&quot;:&quot;0&quot;,&quot;update_time&quot;:&quot;1469444232&quot;,&quot;status&quot;:&quot;1&quot;,&quot;auth_app&quot;:&quot;3ccabd5ff10fef7aac62e226b2e93bf3&quot;,&quot;login_time&quot;:&quot;1469444232&quot;,&quot;remove_time&quot;:&quot;0&quot;,&quot;is_del&quot;:&quot;0&quot;,&quot;rand_num&quot;:&quot;0&quot;}}</responseData>
   <responseFile class="java.lang.String"></responseFile>
   <cookies class="java.lang.String"></cookies>
   <method class="java.lang.String">POST</method>
   <queryString class="java.lang.String">auth_app=&amp;password=670b14728ad9902aecba32e22fa4f6bd&amp;user_id=&amp;username=15200000000</queryString>
   <java.net.URL>http://api.app.aiqitu.cn/user/login</java.net.URL>
 </httpSample>
-<httpSample t="39" it="0" lt="38" ct="0" ts="1469290988652" s="false" lb="首页banner，推荐" rc="200" rm="OK" tn="奇途接口自动化 1-1" dt="text" by="278" sc="1" ec="1" ng="1" na="1" hn="PC-Liu">
-  <assertionResult>
-    <name>响应断言</name>
-    <failure>true</failure>
-    <error>false</error>
-    <failureMessage>Test failed: text expected to contain /333/</failureMessage>
-  </assertionResult>
+<httpSample t="15" it="0" lt="15" ct="0" ts="1469444249831" s="true" lb="获取测试数据" rc="200" rm="OK" tn="奇途接口自动化 1-1" dt="text" by="341" sc="1" ec="0" ng="1" na="1" hn="liujing1">
   <responseHeader class="java.lang.String">HTTP/1.1 200 OK
-Server: nginx
-Date: Sat, 23 Jul 2016 16:23:09 GMT
-Content-Type: application/json
+Server: nginx/1.8.0
+Date: Mon, 25 Jul 2016 10:57:12 GMT
+Content-Type: text/html; charset=utf-8
 Transfer-Encoding: chunked
 Connection: keep-alive
-X-Powered-By: PHP/5.6.9
+X-Powered-By: PHP/5.6.14
 Access-Control-Allow-Origin: *
 </responseHeader>
   <requestHeader class="java.lang.String">Connection: keep-alive
 Host: api.app.aiqitu.cn
-User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_77)
+User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_11)
 </requestHeader>
-  <responseData class="java.lang.String">{&quot;code&quot;:1,&quot;msg&quot;:&quot;ok&quot;,&quot;data&quot;:{&quot;total_page&quot;:0,&quot;list&quot;:[]}}</responseData>
+  <responseData class="java.lang.String">FSS Tips: this is the defaultAction, 这是默认的Action，请实现此方法保证显示正确内容</responseData>
   <responseFile class="java.lang.String"></responseFile>
   <cookies class="java.lang.String"></cookies>
   <method class="java.lang.String">GET</method>
   <queryString class="java.lang.String"></queryString>
-  <java.net.URL>http://api.app.aiqitu.cn/index/indexRecommendProduct</java.net.URL>
+  <java.net.URL>http://api.app.aiqitu.cn/</java.net.URL>
 </httpSample>
-<httpSample t="153" it="0" lt="153" ct="0" ts="1469290988787" s="false" lb="首页banner" rc="200" rm="OK" tn="奇途接口自动化 1-1" dt="text" by="1492" sc="1" ec="1" ng="1" na="1" hn="PC-Liu">
+<httpSample t="19" it="0" lt="19" ct="0" ts="1469444250062" s="true" lb="首页推荐 ：/index/indexRecommendProduct" rc="200" rm="OK" tn="奇途接口自动化 1-1" dt="text" by="3222" sc="1" ec="0" ng="1" na="1" hn="liujing1">
   <assertionResult>
-    <name>响应断言</name>
-    <failure>true</failure>
+    <name>断言</name>
+    <failure>false</failure>
     <error>false</error>
-    <failureMessage>Test failed: text expected to contain /14726968415/</failureMessage>
+    <failureMessage></failureMessage>
   </assertionResult>
   <responseHeader class="java.lang.String">HTTP/1.1 200 OK
-Server: nginx
-Date: Sat, 23 Jul 2016 16:23:09 GMT
+Server: nginx/1.8.0
+Date: Mon, 25 Jul 2016 10:57:12 GMT
 Content-Type: application/json
 Transfer-Encoding: chunked
 Connection: keep-alive
-X-Powered-By: PHP/5.6.9
+X-Powered-By: PHP/5.6.14
+Access-Control-Allow-Origin: *
+</responseHeader>
+  <requestHeader class="java.lang.String">Connection: keep-alive
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 83
+Host: api.app.aiqitu.cn
+User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_11)
+</requestHeader>
+  <responseData class="java.lang.String">{&quot;code&quot;:1,&quot;msg&quot;:&quot;ok&quot;,&quot;data&quot;:{&quot;total_page&quot;:1,&quot;list&quot;:[{&quot;product_id&quot;:2,&quot;name&quot;:&quot;\u5cb3\u9e93\u5c71&quot;,&quot;type&quot;:2,&quot;onsale_time&quot;:&quot;1970-01-01 08:00:00&quot;,&quot;min_price&quot;:100,&quot;departure&quot;:10,&quot;destination&quot;:10,&quot;brief&quot;:&quot;\u5cb3\u9e93\u5c71\u4e1c\u9e93\u6709\u5ea7\u5cb3\u9e93\u4e66\u9662\uff0c\u65e9\u5728\u5b8b\u4ee3\u5c31\u662f\u5168\u56fd\u6709\u540d\u7684\u56db\u5927\u5b66\u5e9c\u4e4b\u4e00\u3002\u4e66\u9662\u7684\u4e3b\u8bb2\u4eba\u53eb\u5c71\r\n\u957f\u3002\u6e05\u4ee3\u4e7e\u9686\u5e74\u95f4\uff0c\u6709\u4e2a\u540d\u53eb\u7f57\u5178\u7684\u4eba\uff0c\u5728\u8fd9\u91cc\u505a\u4e86\u4e8c\u5341\u4e03\u5e74\u5c71\u957f\uff0c\u5f88\u6709\u540d\u6c14\u3002\u7f57\u5178\u662f\u4f4d\u7ecf\u5b66\u5bb6\uff0c\u4e3a\u4eba\u6e05\u9ad8\u50b2\u6162\uff0c\u6709\u4e9b\u53e4\u677f\u3002\u4ed6\u4e0d\u4f46\u8ba4\u771f\u6559\u4e66\uff0c\u8fd8\u6bcf\u5e74\u62ff\u51fa\u81ea\u5df1\u7684\u4ff8\u91d1\uff0c\u589e\u4fee\u4e66\u9662\uff0c\u5cb3\u9e93\u5c71\u7684\u67f3\u5858\u70df\u6653\u3001\u6843\u575e\u70d8\u971e\u3001\u6850\u836b\u522b\u5f84\u3001\u98ce\u8377\u665a\u9999\u3001\u66f2\u6da7\u9e23\u6cc9\u3001\u78a7\u6cbc\u89c2\u9c7c\u3001\u82b1\u58a9\u5750\u6708\u3001\u7af9\u6797\u51ac\u7fe0\u7b49\u516b\u666f\uff0c\u90fd\u662f\u4ed6\u4eb2\u624b\u6307\u70b9\u52a0\u5de5\u4fee\u9970\u7684\u3002\u4e3a\u4e86\u6b23\u8d4f\u79cb\u5c71\u7ea2\u53f6\uff0c\u4ed6\u8fd8\u5728\u4e66\u9662\u540e\u9762\u7684\u6e05\u67ab\u5ce1\u53e3\u4e0a&quot;,&quot;sold&quot;:6,&quot;thumb&quot;:&quot;http:\/\/img.travel.com\/uploads\/product\/201607221048207909.jpg&quot;,&quot;departure_name&quot;:&quot;\u957f\u6c99\u5e02&quot;,&quot;destination_name&quot;:&quot;\u957f\u6c99\u5e02&quot;,&quot;price&quot;:80,&quot;rest_time&quot;:0,&quot;discount_price&quot;:80},{&quot;product_id&quot;:1,&quot;name&quot;:&quot;\u5317\u4eac\u4e09\u65e5\u6e38&quot;,&quot;type&quot;:2,&quot;onsale_time&quot;:&quot;1970-01-01 08:00:00&quot;,&quot;min_price&quot;:100,&quot;departure&quot;:10,&quot;destination&quot;:20,&quot;brief&quot;:&quot;\u5317\u4eac\u6545\u5bab\u662f\u4e2d\u56fd\u660e\u6e05\u4e24\u4ee3\u7684\u7687\u5bb6\u5bab\u6bbf\uff0c\u65e7\u79f0\u4e3a\u7d2b\u7981\u57ce\uff0c\u4f4d\u4e8e\u5317\u4eac\u4e2d\u8f74\u7ebf\u7684\u4e2d\u5fc3\uff0c\u662f\u4e2d\u56fd\u53e4\u4ee3\u5bab\u5ef7\u5efa\u7b51\u4e4b\u7cbe\u534e\u3002\u5317\u4eac\u6545\u5bab\u4ee5\u592a\u4e09\u5927\u6bbf\u4e3a\u4e2d\u5fc3\uff0c\u5360\u573072\u4e07\u5e73\u65b9\u7c73\uff0c\u5efa\u7b51\u9762\u79ef\u7ea615\u4e07\u5e73\u65b9\u7c73\uff0c\u6709\u5927\u5c0f\u5bab\u6bbf\u4e03\u5341\u591a\u5ea7\uff0c\u623f\u5c4b\u4e5d\u5343\u4f59\u95f4\u3002\u662f\u4e16\u754c\u4e0a\u73b0\u5b58\u89c4\u6a21\u6700\u5927\u3001\u4fdd\u5b58\u6700\u4e3a\u5b8c\u6574\u7684\u6728\u8d28\u7ed3\u6784\u53e4\u5efa\u7b51\u4e4b\u4e00\u3002\r\n\u5317\u4eac\u6545\u5bab\u4e8e\u660e\u6210\u7956\u6c38\u4e50\u56db\u5e74\uff081406\u5e74\uff09\u5f00\u59cb\u5efa\u8bbe\uff0c\u4ee5\u5357\u4eac\u6545\u5bab\u4e3a\u84dd\u672c\u8425\u5efa\uff0c\u5230\u6c38\u4e50\u5341\u516b\u5e74\uff081420\u5e74\uff09\u5efa\u6210\u3002&quot;,&quot;sold&quot;:12,&quot;thumb&quot;:&quot;http:\/\/img.travel.com\/uploads\/product\/201607221033355567.jpg&quot;,&quot;departure_name&quot;:&quot;\u957f\u6c99\u5e02&quot;,&quot;destination_name&quot;:&quot;\u5317\u4eac\u5e02&quot;,&quot;price&quot;:80,&quot;rest_time&quot;:0,&quot;discount_price&quot;:80}]}}</responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <cookies class="java.lang.String"></cookies>
+  <method class="java.lang.String">POST</method>
+  <queryString class="java.lang.String">area=长沙&amp;page=1&amp;page_size=10&amp;auth_app=3ccabd5ff10fef7aac62e226b2e93bf3&amp;user_id=1</queryString>
+  <java.net.URL>http://api.app.aiqitu.cn/index/indexRecommendProduct</java.net.URL>
+</httpSample>
+<httpSample t="14" it="0" lt="14" ct="0" ts="1469444250088" s="true" lb="获取测试数据" rc="200" rm="OK" tn="奇途接口自动化 1-1" dt="text" by="341" sc="1" ec="0" ng="1" na="1" hn="liujing1">
+  <responseHeader class="java.lang.String">HTTP/1.1 200 OK
+Server: nginx/1.8.0
+Date: Mon, 25 Jul 2016 10:57:12 GMT
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Powered-By: PHP/5.6.14
 Access-Control-Allow-Origin: *
 </responseHeader>
   <requestHeader class="java.lang.String">Connection: keep-alive
 Host: api.app.aiqitu.cn
-User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_77)
+User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_11)
 </requestHeader>
-  <responseData class="java.lang.String">{&quot;code&quot;:1,&quot;msg&quot;:&quot;ok&quot;,&quot;data&quot;:{&quot;banner&quot;:[{&quot;url&quot;:&quot;http:\/\/www.tuniu.com\/trips\/10085973&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/ads\/201606271740517872.jpg&quot;},{&quot;url&quot;:&quot;&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/ads\/201606211743338731.jpg&quot;},{&quot;url&quot;:&quot;http:\/\/www.baidu.com\/&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/ads\/201606211739299605.jpg&quot;},{&quot;url&quot;:&quot;&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/ads\/201606211743126972.jpg&quot;},{&quot;url&quot;:&quot;&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/ads\/201606211742296584.jpg&quot;}],&quot;theme&quot;:[{&quot;id&quot;:&quot;1&quot;,&quot;name&quot;:&quot;\u82b1\u6d77&quot;,&quot;icon&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607041033245780.jpg&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201606201342587715.jpg&quot;},{&quot;id&quot;:&quot;3&quot;,&quot;name&quot;:&quot;\u547c\u4f26\u8d1d\u5c14&quot;,&quot;icon&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201606201735081457.jpg&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201606201735087827.jpg&quot;},{&quot;id&quot;:&quot;4&quot;,&quot;name&quot;:&quot;\u5403\u5403\u5403&quot;,&quot;icon&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201606220934034578.jpg&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201606220934031634.jpg&quot;},{&quot;id&quot;:&quot;14&quot;,&quot;name&quot;:&quot;\u4f0a\u65af\u5766\u5e03\u5c14&quot;,&quot;icon&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201606271004534543.jpg&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201606271004534471.jpg&quot;}]}}</responseData>
+  <responseData class="java.lang.String">FSS Tips: this is the defaultAction, 这是默认的Action，请实现此方法保证显示正确内容</responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <cookies class="java.lang.String"></cookies>
+  <method class="java.lang.String">GET</method>
+  <queryString class="java.lang.String"></queryString>
+  <java.net.URL>http://api.app.aiqitu.cn/</java.net.URL>
+</httpSample>
+<httpSample t="22" it="0" lt="22" ct="0" ts="1469444250129" s="true" lb="首页banner ：/index/index" rc="200" rm="OK" tn="奇途接口自动化 1-1" dt="text" by="1309" sc="1" ec="0" ng="1" na="1" hn="liujing1">
+  <assertionResult>
+    <name>断言</name>
+    <failure>false</failure>
+    <error>false</error>
+    <failureMessage></failureMessage>
+  </assertionResult>
+  <responseHeader class="java.lang.String">HTTP/1.1 200 OK
+Server: nginx/1.8.0
+Date: Mon, 25 Jul 2016 10:57:12 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Powered-By: PHP/5.6.14
+Access-Control-Allow-Origin: *
+</responseHeader>
+  <requestHeader class="java.lang.String">Connection: keep-alive
+Host: api.app.aiqitu.cn
+User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_11)
+</requestHeader>
+  <responseData class="java.lang.String">{&quot;code&quot;:1,&quot;msg&quot;:&quot;ok&quot;,&quot;data&quot;:{&quot;banner&quot;:[{&quot;url&quot;:&quot;http:\\\\product.aiqitu.cn&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/ads\/201607221019504757.jpg&quot;},{&quot;url&quot;:&quot;&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/ads\/201607221019248632.jpg&quot;},{&quot;url&quot;:&quot;http:\\\\www.baidu.com&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/ads\/201607221018483670.jpg&quot;}],&quot;theme&quot;:[{&quot;id&quot;:&quot;4&quot;,&quot;name&quot;:&quot;\u5357\u4e0b\u884c&quot;,&quot;icon&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221011367747.jpg&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221011362253.jpg&quot;},{&quot;id&quot;:&quot;3&quot;,&quot;name&quot;:&quot;\u5317\u4e0a\u884c&quot;,&quot;icon&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221011147597.jpg&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221011147925.jpg&quot;},{&quot;id&quot;:&quot;5&quot;,&quot;name&quot;:&quot;\u6bd5\u4e1a\u65c5\u884c&quot;,&quot;icon&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221018091543.jpg&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221018092250.jpg&quot;},{&quot;id&quot;:&quot;6&quot;,&quot;name&quot;:&quot;\u4e09\u4e9a&quot;,&quot;icon&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221050242357.jpg&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221050243844.jpg&quot;}]}}</responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <cookies class="java.lang.String"></cookies>
+  <method class="java.lang.String">GET</method>
+  <queryString class="java.lang.String"></queryString>
+  <java.net.URL>http://api.app.aiqitu.cn/index/index</java.net.URL>
+</httpSample>
+<httpSample t="14" it="0" lt="14" ct="0" ts="1469444250155" s="true" lb="获取测试数据" rc="200" rm="OK" tn="奇途接口自动化 1-1" dt="text" by="341" sc="1" ec="0" ng="1" na="1" hn="liujing1">
+  <responseHeader class="java.lang.String">HTTP/1.1 200 OK
+Server: nginx/1.8.0
+Date: Mon, 25 Jul 2016 10:57:12 GMT
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Powered-By: PHP/5.6.14
+Access-Control-Allow-Origin: *
+</responseHeader>
+  <requestHeader class="java.lang.String">Connection: keep-alive
+Host: api.app.aiqitu.cn
+User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_11)
+</requestHeader>
+  <responseData class="java.lang.String">FSS Tips: this is the defaultAction, 这是默认的Action，请实现此方法保证显示正确内容</responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <cookies class="java.lang.String"></cookies>
+  <method class="java.lang.String">GET</method>
+  <queryString class="java.lang.String"></queryString>
+  <java.net.URL>http://api.app.aiqitu.cn/</java.net.URL>
+</httpSample>
+<httpSample t="18" it="0" lt="18" ct="0" ts="1469444250191" s="false" lb="首页推荐 ：/index/indexRecommendProduct" rc="200" rm="OK" tn="奇途接口自动化 1-1" dt="text" by="285" sc="1" ec="1" ng="1" na="1" hn="liujing1">
+  <assertionResult>
+    <name>断言</name>
+    <failure>true</failure>
+    <error>false</error>
+    <failureMessage>断言失败，不包含长沙</failureMessage>
+  </assertionResult>
+  <responseHeader class="java.lang.String">HTTP/1.1 200 OK
+Server: nginx/1.8.0
+Date: Mon, 25 Jul 2016 10:57:12 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Powered-By: PHP/5.6.14
+Access-Control-Allow-Origin: *
+</responseHeader>
+  <requestHeader class="java.lang.String">Connection: keep-alive
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 83
+Host: api.app.aiqitu.cn
+User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_11)
+</requestHeader>
+  <responseData class="java.lang.String">{&quot;code&quot;:1,&quot;msg&quot;:&quot;ok&quot;,&quot;data&quot;:{&quot;total_page&quot;:0,&quot;list&quot;:[]}}</responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <cookies class="java.lang.String"></cookies>
+  <method class="java.lang.String">POST</method>
+  <queryString class="java.lang.String">area=北京&amp;page=1&amp;page_size=10&amp;auth_app=3ccabd5ff10fef7aac62e226b2e93bf3&amp;user_id=1</queryString>
+  <java.net.URL>http://api.app.aiqitu.cn/index/indexRecommendProduct</java.net.URL>
+</httpSample>
+<httpSample t="15" it="0" lt="15" ct="0" ts="1469444250211" s="true" lb="获取测试数据" rc="200" rm="OK" tn="奇途接口自动化 1-1" dt="text" by="341" sc="1" ec="0" ng="1" na="1" hn="liujing1">
+  <responseHeader class="java.lang.String">HTTP/1.1 200 OK
+Server: nginx/1.8.0
+Date: Mon, 25 Jul 2016 10:57:12 GMT
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Powered-By: PHP/5.6.14
+Access-Control-Allow-Origin: *
+</responseHeader>
+  <requestHeader class="java.lang.String">Connection: keep-alive
+Host: api.app.aiqitu.cn
+User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_11)
+</requestHeader>
+  <responseData class="java.lang.String">FSS Tips: this is the defaultAction, 这是默认的Action，请实现此方法保证显示正确内容</responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <cookies class="java.lang.String"></cookies>
+  <method class="java.lang.String">GET</method>
+  <queryString class="java.lang.String"></queryString>
+  <java.net.URL>http://api.app.aiqitu.cn/</java.net.URL>
+</httpSample>
+<httpSample t="15" it="0" lt="15" ct="0" ts="1469444250248" s="true" lb="首页banner ：/index/index" rc="200" rm="OK" tn="奇途接口自动化 1-1" dt="text" by="1309" sc="1" ec="0" ng="1" na="1" hn="liujing1">
+  <assertionResult>
+    <name>断言</name>
+    <failure>false</failure>
+    <error>false</error>
+    <failureMessage></failureMessage>
+  </assertionResult>
+  <responseHeader class="java.lang.String">HTTP/1.1 200 OK
+Server: nginx/1.8.0
+Date: Mon, 25 Jul 2016 10:57:12 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Powered-By: PHP/5.6.14
+Access-Control-Allow-Origin: *
+</responseHeader>
+  <requestHeader class="java.lang.String">Connection: keep-alive
+Host: api.app.aiqitu.cn
+User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_11)
+</requestHeader>
+  <responseData class="java.lang.String">{&quot;code&quot;:1,&quot;msg&quot;:&quot;ok&quot;,&quot;data&quot;:{&quot;banner&quot;:[{&quot;url&quot;:&quot;http:\\\\product.aiqitu.cn&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/ads\/201607221019504757.jpg&quot;},{&quot;url&quot;:&quot;&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/ads\/201607221019248632.jpg&quot;},{&quot;url&quot;:&quot;http:\\\\www.baidu.com&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/ads\/201607221018483670.jpg&quot;}],&quot;theme&quot;:[{&quot;id&quot;:&quot;4&quot;,&quot;name&quot;:&quot;\u5357\u4e0b\u884c&quot;,&quot;icon&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221011367747.jpg&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221011362253.jpg&quot;},{&quot;id&quot;:&quot;3&quot;,&quot;name&quot;:&quot;\u5317\u4e0a\u884c&quot;,&quot;icon&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221011147597.jpg&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221011147925.jpg&quot;},{&quot;id&quot;:&quot;5&quot;,&quot;name&quot;:&quot;\u6bd5\u4e1a\u65c5\u884c&quot;,&quot;icon&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221018091543.jpg&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221018092250.jpg&quot;},{&quot;id&quot;:&quot;6&quot;,&quot;name&quot;:&quot;\u4e09\u4e9a&quot;,&quot;icon&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221050242357.jpg&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221050243844.jpg&quot;}]}}</responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <cookies class="java.lang.String"></cookies>
+  <method class="java.lang.String">GET</method>
+  <queryString class="java.lang.String"></queryString>
+  <java.net.URL>http://api.app.aiqitu.cn/index/index</java.net.URL>
+</httpSample>
+<httpSample t="14" it="0" lt="14" ct="0" ts="1469444250267" s="true" lb="获取测试数据" rc="200" rm="OK" tn="奇途接口自动化 1-1" dt="text" by="341" sc="1" ec="0" ng="1" na="1" hn="liujing1">
+  <responseHeader class="java.lang.String">HTTP/1.1 200 OK
+Server: nginx/1.8.0
+Date: Mon, 25 Jul 2016 10:57:12 GMT
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Powered-By: PHP/5.6.14
+Access-Control-Allow-Origin: *
+</responseHeader>
+  <requestHeader class="java.lang.String">Connection: keep-alive
+Host: api.app.aiqitu.cn
+User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_11)
+</requestHeader>
+  <responseData class="java.lang.String">FSS Tips: this is the defaultAction, 这是默认的Action，请实现此方法保证显示正确内容</responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <cookies class="java.lang.String"></cookies>
+  <method class="java.lang.String">GET</method>
+  <queryString class="java.lang.String"></queryString>
+  <java.net.URL>http://api.app.aiqitu.cn/</java.net.URL>
+</httpSample>
+<httpSample t="15" it="0" lt="15" ct="0" ts="1469444250301" s="false" lb="首页推荐 ：/index/indexRecommendProduct" rc="200" rm="OK" tn="奇途接口自动化 1-1" dt="text" by="285" sc="1" ec="1" ng="1" na="1" hn="liujing1">
+  <assertionResult>
+    <name>断言</name>
+    <failure>true</failure>
+    <error>false</error>
+    <failureMessage>断言失败，不包含长沙</failureMessage>
+  </assertionResult>
+  <responseHeader class="java.lang.String">HTTP/1.1 200 OK
+Server: nginx/1.8.0
+Date: Mon, 25 Jul 2016 10:57:12 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Powered-By: PHP/5.6.14
+Access-Control-Allow-Origin: *
+</responseHeader>
+  <requestHeader class="java.lang.String">Connection: keep-alive
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 83
+Host: api.app.aiqitu.cn
+User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_11)
+</requestHeader>
+  <responseData class="java.lang.String">{&quot;code&quot;:1,&quot;msg&quot;:&quot;ok&quot;,&quot;data&quot;:{&quot;total_page&quot;:0,&quot;list&quot;:[]}}</responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <cookies class="java.lang.String"></cookies>
+  <method class="java.lang.String">POST</method>
+  <queryString class="java.lang.String">area=上海&amp;page=1&amp;page_size=10&amp;auth_app=3ccabd5ff10fef7aac62e226b2e93bf3&amp;user_id=1</queryString>
+  <java.net.URL>http://api.app.aiqitu.cn/index/indexRecommendProduct</java.net.URL>
+</httpSample>
+<httpSample t="13" it="0" lt="13" ct="0" ts="1469444250318" s="true" lb="获取测试数据" rc="200" rm="OK" tn="奇途接口自动化 1-1" dt="text" by="341" sc="1" ec="0" ng="1" na="1" hn="liujing1">
+  <responseHeader class="java.lang.String">HTTP/1.1 200 OK
+Server: nginx/1.8.0
+Date: Mon, 25 Jul 2016 10:57:12 GMT
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Powered-By: PHP/5.6.14
+Access-Control-Allow-Origin: *
+</responseHeader>
+  <requestHeader class="java.lang.String">Connection: keep-alive
+Host: api.app.aiqitu.cn
+User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_11)
+</requestHeader>
+  <responseData class="java.lang.String">FSS Tips: this is the defaultAction, 这是默认的Action，请实现此方法保证显示正确内容</responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <cookies class="java.lang.String"></cookies>
+  <method class="java.lang.String">GET</method>
+  <queryString class="java.lang.String"></queryString>
+  <java.net.URL>http://api.app.aiqitu.cn/</java.net.URL>
+</httpSample>
+<httpSample t="15" it="0" lt="15" ct="0" ts="1469444250352" s="true" lb="首页banner ：/index/index" rc="200" rm="OK" tn="奇途接口自动化 1-1" dt="text" by="1309" sc="1" ec="0" ng="1" na="1" hn="liujing1">
+  <assertionResult>
+    <name>断言</name>
+    <failure>false</failure>
+    <error>false</error>
+    <failureMessage></failureMessage>
+  </assertionResult>
+  <responseHeader class="java.lang.String">HTTP/1.1 200 OK
+Server: nginx/1.8.0
+Date: Mon, 25 Jul 2016 10:57:12 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Powered-By: PHP/5.6.14
+Access-Control-Allow-Origin: *
+</responseHeader>
+  <requestHeader class="java.lang.String">Connection: keep-alive
+Host: api.app.aiqitu.cn
+User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_11)
+</requestHeader>
+  <responseData class="java.lang.String">{&quot;code&quot;:1,&quot;msg&quot;:&quot;ok&quot;,&quot;data&quot;:{&quot;banner&quot;:[{&quot;url&quot;:&quot;http:\\\\product.aiqitu.cn&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/ads\/201607221019504757.jpg&quot;},{&quot;url&quot;:&quot;&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/ads\/201607221019248632.jpg&quot;},{&quot;url&quot;:&quot;http:\\\\www.baidu.com&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/ads\/201607221018483670.jpg&quot;}],&quot;theme&quot;:[{&quot;id&quot;:&quot;4&quot;,&quot;name&quot;:&quot;\u5357\u4e0b\u884c&quot;,&quot;icon&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221011367747.jpg&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221011362253.jpg&quot;},{&quot;id&quot;:&quot;3&quot;,&quot;name&quot;:&quot;\u5317\u4e0a\u884c&quot;,&quot;icon&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221011147597.jpg&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221011147925.jpg&quot;},{&quot;id&quot;:&quot;5&quot;,&quot;name&quot;:&quot;\u6bd5\u4e1a\u65c5\u884c&quot;,&quot;icon&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221018091543.jpg&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221018092250.jpg&quot;},{&quot;id&quot;:&quot;6&quot;,&quot;name&quot;:&quot;\u4e09\u4e9a&quot;,&quot;icon&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221050242357.jpg&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221050243844.jpg&quot;}]}}</responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <cookies class="java.lang.String"></cookies>
+  <method class="java.lang.String">GET</method>
+  <queryString class="java.lang.String"></queryString>
+  <java.net.URL>http://api.app.aiqitu.cn/index/index</java.net.URL>
+</httpSample>
+<httpSample t="14" it="0" lt="14" ct="0" ts="1469444250371" s="true" lb="获取测试数据" rc="200" rm="OK" tn="奇途接口自动化 1-1" dt="text" by="341" sc="1" ec="0" ng="1" na="1" hn="liujing1">
+  <responseHeader class="java.lang.String">HTTP/1.1 200 OK
+Server: nginx/1.8.0
+Date: Mon, 25 Jul 2016 10:57:12 GMT
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Powered-By: PHP/5.6.14
+Access-Control-Allow-Origin: *
+</responseHeader>
+  <requestHeader class="java.lang.String">Connection: keep-alive
+Host: api.app.aiqitu.cn
+User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_11)
+</requestHeader>
+  <responseData class="java.lang.String">FSS Tips: this is the defaultAction, 这是默认的Action，请实现此方法保证显示正确内容</responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <cookies class="java.lang.String"></cookies>
+  <method class="java.lang.String">GET</method>
+  <queryString class="java.lang.String"></queryString>
+  <java.net.URL>http://api.app.aiqitu.cn/</java.net.URL>
+</httpSample>
+<httpSample t="17" it="0" lt="17" ct="0" ts="1469444250405" s="true" lb="首页推荐 ：/index/indexRecommendProduct" rc="200" rm="OK" tn="奇途接口自动化 1-1" dt="text" by="3222" sc="1" ec="0" ng="1" na="1" hn="liujing1">
+  <assertionResult>
+    <name>断言</name>
+    <failure>false</failure>
+    <error>false</error>
+    <failureMessage></failureMessage>
+  </assertionResult>
+  <responseHeader class="java.lang.String">HTTP/1.1 200 OK
+Server: nginx/1.8.0
+Date: Mon, 25 Jul 2016 10:57:12 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Powered-By: PHP/5.6.14
+Access-Control-Allow-Origin: *
+</responseHeader>
+  <requestHeader class="java.lang.String">Connection: keep-alive
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 83
+Host: api.app.aiqitu.cn
+User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_11)
+</requestHeader>
+  <responseData class="java.lang.String">{&quot;code&quot;:1,&quot;msg&quot;:&quot;ok&quot;,&quot;data&quot;:{&quot;total_page&quot;:1,&quot;list&quot;:[{&quot;product_id&quot;:2,&quot;name&quot;:&quot;\u5cb3\u9e93\u5c71&quot;,&quot;type&quot;:2,&quot;onsale_time&quot;:&quot;1970-01-01 08:00:00&quot;,&quot;min_price&quot;:100,&quot;departure&quot;:10,&quot;destination&quot;:10,&quot;brief&quot;:&quot;\u5cb3\u9e93\u5c71\u4e1c\u9e93\u6709\u5ea7\u5cb3\u9e93\u4e66\u9662\uff0c\u65e9\u5728\u5b8b\u4ee3\u5c31\u662f\u5168\u56fd\u6709\u540d\u7684\u56db\u5927\u5b66\u5e9c\u4e4b\u4e00\u3002\u4e66\u9662\u7684\u4e3b\u8bb2\u4eba\u53eb\u5c71\r\n\u957f\u3002\u6e05\u4ee3\u4e7e\u9686\u5e74\u95f4\uff0c\u6709\u4e2a\u540d\u53eb\u7f57\u5178\u7684\u4eba\uff0c\u5728\u8fd9\u91cc\u505a\u4e86\u4e8c\u5341\u4e03\u5e74\u5c71\u957f\uff0c\u5f88\u6709\u540d\u6c14\u3002\u7f57\u5178\u662f\u4f4d\u7ecf\u5b66\u5bb6\uff0c\u4e3a\u4eba\u6e05\u9ad8\u50b2\u6162\uff0c\u6709\u4e9b\u53e4\u677f\u3002\u4ed6\u4e0d\u4f46\u8ba4\u771f\u6559\u4e66\uff0c\u8fd8\u6bcf\u5e74\u62ff\u51fa\u81ea\u5df1\u7684\u4ff8\u91d1\uff0c\u589e\u4fee\u4e66\u9662\uff0c\u5cb3\u9e93\u5c71\u7684\u67f3\u5858\u70df\u6653\u3001\u6843\u575e\u70d8\u971e\u3001\u6850\u836b\u522b\u5f84\u3001\u98ce\u8377\u665a\u9999\u3001\u66f2\u6da7\u9e23\u6cc9\u3001\u78a7\u6cbc\u89c2\u9c7c\u3001\u82b1\u58a9\u5750\u6708\u3001\u7af9\u6797\u51ac\u7fe0\u7b49\u516b\u666f\uff0c\u90fd\u662f\u4ed6\u4eb2\u624b\u6307\u70b9\u52a0\u5de5\u4fee\u9970\u7684\u3002\u4e3a\u4e86\u6b23\u8d4f\u79cb\u5c71\u7ea2\u53f6\uff0c\u4ed6\u8fd8\u5728\u4e66\u9662\u540e\u9762\u7684\u6e05\u67ab\u5ce1\u53e3\u4e0a&quot;,&quot;sold&quot;:6,&quot;thumb&quot;:&quot;http:\/\/img.travel.com\/uploads\/product\/201607221048207909.jpg&quot;,&quot;departure_name&quot;:&quot;\u957f\u6c99\u5e02&quot;,&quot;destination_name&quot;:&quot;\u957f\u6c99\u5e02&quot;,&quot;price&quot;:80,&quot;rest_time&quot;:0,&quot;discount_price&quot;:80},{&quot;product_id&quot;:1,&quot;name&quot;:&quot;\u5317\u4eac\u4e09\u65e5\u6e38&quot;,&quot;type&quot;:2,&quot;onsale_time&quot;:&quot;1970-01-01 08:00:00&quot;,&quot;min_price&quot;:100,&quot;departure&quot;:10,&quot;destination&quot;:20,&quot;brief&quot;:&quot;\u5317\u4eac\u6545\u5bab\u662f\u4e2d\u56fd\u660e\u6e05\u4e24\u4ee3\u7684\u7687\u5bb6\u5bab\u6bbf\uff0c\u65e7\u79f0\u4e3a\u7d2b\u7981\u57ce\uff0c\u4f4d\u4e8e\u5317\u4eac\u4e2d\u8f74\u7ebf\u7684\u4e2d\u5fc3\uff0c\u662f\u4e2d\u56fd\u53e4\u4ee3\u5bab\u5ef7\u5efa\u7b51\u4e4b\u7cbe\u534e\u3002\u5317\u4eac\u6545\u5bab\u4ee5\u592a\u4e09\u5927\u6bbf\u4e3a\u4e2d\u5fc3\uff0c\u5360\u573072\u4e07\u5e73\u65b9\u7c73\uff0c\u5efa\u7b51\u9762\u79ef\u7ea615\u4e07\u5e73\u65b9\u7c73\uff0c\u6709\u5927\u5c0f\u5bab\u6bbf\u4e03\u5341\u591a\u5ea7\uff0c\u623f\u5c4b\u4e5d\u5343\u4f59\u95f4\u3002\u662f\u4e16\u754c\u4e0a\u73b0\u5b58\u89c4\u6a21\u6700\u5927\u3001\u4fdd\u5b58\u6700\u4e3a\u5b8c\u6574\u7684\u6728\u8d28\u7ed3\u6784\u53e4\u5efa\u7b51\u4e4b\u4e00\u3002\r\n\u5317\u4eac\u6545\u5bab\u4e8e\u660e\u6210\u7956\u6c38\u4e50\u56db\u5e74\uff081406\u5e74\uff09\u5f00\u59cb\u5efa\u8bbe\uff0c\u4ee5\u5357\u4eac\u6545\u5bab\u4e3a\u84dd\u672c\u8425\u5efa\uff0c\u5230\u6c38\u4e50\u5341\u516b\u5e74\uff081420\u5e74\uff09\u5efa\u6210\u3002&quot;,&quot;sold&quot;:12,&quot;thumb&quot;:&quot;http:\/\/img.travel.com\/uploads\/product\/201607221033355567.jpg&quot;,&quot;departure_name&quot;:&quot;\u957f\u6c99\u5e02&quot;,&quot;destination_name&quot;:&quot;\u5317\u4eac\u5e02&quot;,&quot;price&quot;:80,&quot;rest_time&quot;:0,&quot;discount_price&quot;:80}]}}</responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <cookies class="java.lang.String"></cookies>
+  <method class="java.lang.String">POST</method>
+  <queryString class="java.lang.String">area=长沙&amp;page=1&amp;page_size=10&amp;auth_app=3ccabd5ff10fef7aac62e226b2e93bf3&amp;user_id=1</queryString>
+  <java.net.URL>http://api.app.aiqitu.cn/index/indexRecommendProduct</java.net.URL>
+</httpSample>
+<httpSample t="15" it="0" lt="15" ct="0" ts="1469444250424" s="true" lb="获取测试数据" rc="200" rm="OK" tn="奇途接口自动化 1-1" dt="text" by="341" sc="1" ec="0" ng="1" na="1" hn="liujing1">
+  <responseHeader class="java.lang.String">HTTP/1.1 200 OK
+Server: nginx/1.8.0
+Date: Mon, 25 Jul 2016 10:57:12 GMT
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Powered-By: PHP/5.6.14
+Access-Control-Allow-Origin: *
+</responseHeader>
+  <requestHeader class="java.lang.String">Connection: keep-alive
+Host: api.app.aiqitu.cn
+User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_11)
+</requestHeader>
+  <responseData class="java.lang.String">FSS Tips: this is the defaultAction, 这是默认的Action，请实现此方法保证显示正确内容</responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <cookies class="java.lang.String"></cookies>
+  <method class="java.lang.String">GET</method>
+  <queryString class="java.lang.String"></queryString>
+  <java.net.URL>http://api.app.aiqitu.cn/</java.net.URL>
+</httpSample>
+<httpSample t="15" it="0" lt="15" ct="0" ts="1469444250460" s="true" lb="首页banner ：/index/index" rc="200" rm="OK" tn="奇途接口自动化 1-1" dt="text" by="1309" sc="1" ec="0" ng="1" na="1" hn="liujing1">
+  <assertionResult>
+    <name>断言</name>
+    <failure>false</failure>
+    <error>false</error>
+    <failureMessage></failureMessage>
+  </assertionResult>
+  <responseHeader class="java.lang.String">HTTP/1.1 200 OK
+Server: nginx/1.8.0
+Date: Mon, 25 Jul 2016 10:57:12 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Powered-By: PHP/5.6.14
+Access-Control-Allow-Origin: *
+</responseHeader>
+  <requestHeader class="java.lang.String">Connection: keep-alive
+Host: api.app.aiqitu.cn
+User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_11)
+</requestHeader>
+  <responseData class="java.lang.String">{&quot;code&quot;:1,&quot;msg&quot;:&quot;ok&quot;,&quot;data&quot;:{&quot;banner&quot;:[{&quot;url&quot;:&quot;http:\\\\product.aiqitu.cn&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/ads\/201607221019504757.jpg&quot;},{&quot;url&quot;:&quot;&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/ads\/201607221019248632.jpg&quot;},{&quot;url&quot;:&quot;http:\\\\www.baidu.com&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/ads\/201607221018483670.jpg&quot;}],&quot;theme&quot;:[{&quot;id&quot;:&quot;4&quot;,&quot;name&quot;:&quot;\u5357\u4e0b\u884c&quot;,&quot;icon&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221011367747.jpg&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221011362253.jpg&quot;},{&quot;id&quot;:&quot;3&quot;,&quot;name&quot;:&quot;\u5317\u4e0a\u884c&quot;,&quot;icon&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221011147597.jpg&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221011147925.jpg&quot;},{&quot;id&quot;:&quot;5&quot;,&quot;name&quot;:&quot;\u6bd5\u4e1a\u65c5\u884c&quot;,&quot;icon&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221018091543.jpg&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221018092250.jpg&quot;},{&quot;id&quot;:&quot;6&quot;,&quot;name&quot;:&quot;\u4e09\u4e9a&quot;,&quot;icon&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221050242357.jpg&quot;,&quot;img&quot;:&quot;http:\/\/img.travel.com\/uploads\/theme\/201607221050243844.jpg&quot;}]}}</responseData>
   <responseFile class="java.lang.String"></responseFile>
   <cookies class="java.lang.String"></cookies>
   <method class="java.lang.String">GET</method>

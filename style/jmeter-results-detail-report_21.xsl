@@ -1,30 +1,6 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-<!--
-   Licensed to the Apache Software Foundation (ASF) under one or more
-   contributor license agreements.  See the NOTICE file distributed with
-   this work for additional information regarding copyright ownership.
-   The ASF licenses this file to You under the Apache License, Version 2.0
-   (the "License"); you may not use this file except in compliance with
-   the License.  You may obtain a copy of the License at
- 
-       http://www.apache.org/licenses/LICENSE-2.0
- 
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
--->
-
-<!-- 
-	Stylesheet for processing 2.1 output format test result files 
-	To uses this directly in a browser, add the following to the JTL file as line 2:
-	<?xml-stylesheet type="text/xsl" href="../extras/jmeter-results-detail-report_21.xsl"?>
-	and you can then view the JTL in a browser
--->
-
 <xsl:output method="html" indent="yes" encoding="UTF-8"  />
 
 <!-- Defined parameters (overrideable) -->
@@ -41,21 +17,23 @@
 					font:normal 68% verdana,arial,helvetica;
 					color:#000000;
 				}
+				table{
+					table-layout:fixed;
+				}
 				table tr td, table tr th {
 					font-size: 68%;
 					word-break:break-all ;
+					word-wrap:break-word;
 				}
 				table.details tr th{
 				    color: #ffffff;
 					font-weight: bold;
 					text-align:center;
 					background:#2674a6;
-					white-space: nowrap;
 					word-break:break-all ;
 				}
 				table.details tr td{
 					background:#eeeee0;
-					white-space: nowrap;
 					word-break:break-all ;
 				}
 				h1 {
@@ -124,8 +102,14 @@
 			         document.getElementById(details_id+"_image").src = "expand.png";
 			         collapse(details_id);
 			      } 
-                }
-				
+               }
+				function decodeUTF8(str){
+					return str.replace(/(\\u)(\w{4}|\w{2})/gi, function($0,$1,$2){
+    					return String.fromCharCode(parseInt($2,16));
+					});
+				}
+
+				console.log(decodeUTF8('\u5cb3\u9e93'));
 				
 			]]></script>
 		</head>
@@ -168,9 +152,9 @@
 			<th>Max Time</th>
 		</tr>
 		<tr valign="top">
-			<xsl:variable name="allCount" select="count(/testResults/*)" />
-			<xsl:variable name="allFailureCount" select="count(/testResults/*[attribute::s='false'])" />
-			<xsl:variable name="allSuccessCount" select="count(/testResults/*[attribute::s='true'])" />
+			<xsl:variable name="allCount" select="count(/testResults/httpSample[@lb != '获取测试数据'])" />
+			<xsl:variable name="allFailureCount" select="count(/testResults/*[attribute::s='false' and @lb != '获取测试数据'])" />
+			<xsl:variable name="allSuccessCount" select="count(/testResults/*[attribute::s='true' and @lb != '获取测试数据'])" />
 			<xsl:variable name="allSuccessPercent" select="$allSuccessCount div $allCount" />
 			<xsl:variable name="allTotalTime" select="sum(/testResults/*/@t)" />
 			<xsl:variable name="allAverageTime" select="$allTotalTime div $allCount" />
@@ -223,16 +207,16 @@
 	<h2>Interface</h2>
 	<table align="center" class="details" border="0" cellpadding="5" cellspacing="2" width="95%">
 		<tr valign="top">
-			<th>URL</th>
+			<th width="400px" >URL</th>
 			<th>Case</th>
 			<th>Failures</th>
 			<th>Success Rate</th>
 			<th>Average Time</th>
 			<th>Min Time</th>
 			<th>Max Time</th>
-			<th></th>
+			<th width="40px"></th>
 		</tr>
-		<xsl:for-each select="/testResults/*[not(@lb = preceding::*/@lb)]">
+		<xsl:for-each select="/testResults/*[not(@lb = preceding::*/@lb) and @lb != '获取测试数据']">
 			<xsl:variable name="label" select="@lb" />
 			<xsl:variable name="count" select="count(../*[@lb = current()/@lb])" />
 			<xsl:variable name="failureCount" select="count(../*[@lb = current()/@lb][attribute::s='false'])" />
@@ -272,22 +256,22 @@
 				<td align="center">
 					<xsl:value-of select="$failureCount" />
 				</td>
-				<td align="right">
+				<td align="center">
 					<xsl:call-template name="display-percent">
 						<xsl:with-param name="value" select="$successPercent" />
 					</xsl:call-template>
 				</td>
-				<td align="right">
+				<td align="center">
 					<xsl:call-template name="display-time">
 						<xsl:with-param name="value" select="$averageTime" />
 					</xsl:call-template>
 				</td>
-				<td align="right">
+				<td align="center">
 					<xsl:call-template name="display-time">
 						<xsl:with-param name="value" select="$minTime" />
 					</xsl:call-template>
 				</td>
-				<td align="right">
+				<td align="center">
 					<xsl:call-template name="display-time">
 						<xsl:with-param name="value" select="$maxTime" />
 					</xsl:call-template>
@@ -347,21 +331,21 @@
 			<xsl:if test="$failureCount > 0">
 				<h3><xsl:value-of select="@lb" /><a><xsl:attribute name="name"><xsl:value-of select="@lb" /></xsl:attribute></a></h3>
 
-				<table align="center" class="details" border="0" cellpadding="5" cellspacing="2" width="95%">
+				<table align="center" class="details" border="0" cellpadding="5" cellspacing="2" width="95%" style="word-break:break-all">
 				<tr valign="top">
-					<th  style="width='10'">Response</th>
-					<th>Failure Message</th>
+					<th width="80px">Response</th>
+					<th width="200px">Failure Message</th>
 					<xsl:if test="$showData = 'y'">
-					   <th style="word-break='break-all' ;">Response Data</th>
+					   <th >Response Data</th>
 					</xsl:if>
 				</tr>
 			
 				<xsl:for-each select="/testResults/*[@lb = current()/@lb][attribute::s='false']">
 					<tr>
-						<td id='status'><xsl:value-of select="@rc | @rs" /> - <xsl:value-of select="@rm" /></td>
-						<td><xsl:value-of select="assertionResult/failureMessage" /></td>
+						<td id='status' align="center"><xsl:value-of select="@rc | @rs" /> - <xsl:value-of select="@rm" /></td>
+						<td align="center"><xsl:value-of select="assertionResult/failureMessage" /></td>
 						<xsl:if test="$showData = 'y'">
-							<td><xsl:value-of select="responseData" /></td>
+							<td style="word-break:break-all" ><xsl:value-of select="responseData" /></td>
 						</xsl:if>
 					</tr>
 				</xsl:for-each>
@@ -412,5 +396,4 @@
 	<xsl:param name="value" />
 	<xsl:value-of select="format-number($value,'0 ms')" />
 </xsl:template>
-	
 </xsl:stylesheet>

@@ -7,25 +7,24 @@
 					font:normal 68% verdana,arial,helvetica;
 					color:#000000;
 				}
+				table{
+					table-layout:fixed;
+				}
 				table tr td, table tr th {
 					font-size: 68%;
 					word-break:break-all ;
+					word-wrap:break-word;
 				}
 				table.details tr th{
 				    color: #ffffff;
 					font-weight: bold;
 					text-align:center;
 					background:#2674a6;
-					white-space: nowrap;
 					word-break:break-all ;
 				}
 				table.details tr td{
 					background:#eeeee0;
-					white-space: nowrap;
 					word-break:break-all ;
-				}
-				#status{
-					width:20;
 				}
 				h1 {
 					margin: 0px 0px 5px; font: 165% verdana,arial,helvetica
@@ -93,8 +92,14 @@
 			         document.getElementById(details_id+"_image").src = "expand.png";
 			         collapse(details_id);
 			      } 
-                }
-				
+               }
+				function decodeUTF8(str){
+					return str.replace(/(\\u)(\w{4}|\w{2})/gi, function($0,$1,$2){
+    					return String.fromCharCode(parseInt($2,16));
+					});
+				}
+
+				console.log(decodeUTF8('\u5cb3\u9e93'));
 				
 			</script>
 </head>
@@ -102,7 +107,7 @@
 <h1>自动化测试报告</h1>
 <table width="100%">
 <tr>
-<td align="left">Date report: 2016/07/24 00:23</td><td align="right">Designed for use with <a href="http://jmeter.apache.org/">JMeter</a> and <a href="http://ant.apache.org">Ant</a>.</td>
+<td align="left">Date report: 2016/07/25 18:57</td><td align="right">Designed for use with <a href="http://jmeter.apache.org/">JMeter</a> and <a href="http://ant.apache.org">Ant</a>.</td>
 </tr>
 </table>
 <hr size="1">
@@ -112,64 +117,82 @@
 <th>Case</th><th>Failures</th><th>Success Rate</th><th>Average Time</th><th>Min Time</th><th>Max Time</th>
 </tr>
 <tr valign="top" class="Failure">
-<td align="center">3</td><td align="center">2</td><td align="center">33.33%</td><td align="center">146 ms</td><td align="center">39 ms</td><td align="center">246 ms</td>
+<td align="center">9</td><td align="center">2</td><td align="center">77.78%</td><td align="center">37 ms</td><td align="center">13 ms</td><td align="center">80 ms</td>
 </tr>
 </table>
 <hr align="center" width="95%" size="1">
 <h2>Interface</h2>
 <table width="95%" cellspacing="2" cellpadding="5" border="0" class="details" align="center">
 <tr valign="top">
-<th>URL</th><th>Case</th><th>Failures</th><th>Success Rate</th><th>Average Time</th><th>Min Time</th><th>Max Time</th><th></th>
+<th width="400px">URL</th><th>Case</th><th>Failures</th><th>Success Rate</th><th>Average Time</th><th>Min Time</th><th>Max Time</th><th width="40px"></th>
 </tr>
 <tr valign="top" class="">
-<td>登录</td><td align="center">1</td><td align="center">0</td><td align="right">100.00%</td><td align="right">246 ms</td><td align="right">246 ms</td><td align="right">246 ms</td><td align="center"><a href="javascript:change('page_details_1')"><img alt="expand/collapse" src="expand.png" id="page_details_1_image"></a></td>
+<td>登录：/user/login</td><td align="center">1</td><td align="center">0</td><td align="center">100.00%</td><td align="center">80 ms</td><td align="center">80 ms</td><td align="center">80 ms</td><td align="center"><a href="javascript:change('page_details_1')"><img alt="expand/collapse" src="expand.png" id="page_details_1_image"></a></td>
 </tr>
 <tr class="page_details" id="page_details_1">
 <td bgcolor="#FF0000" colspan="8">
 <div align="center">
-<b>Details for Page "登录"</b>
+<b>Details for Page "登录：/user/login"</b>
 <table width="95%" cellspacing="1" cellpadding="1" border="0" bgcolor="#2674A6" bordercolor="#000000">
 <tr>
 <th>Thread</th><th>Iteration</th><th>Time (milliseconds)</th><th>Bytes</th><th>Success</th>
 </tr>
 <tr>
-<td>奇途接口自动化 1-1</td><td align="center">1</td><td align="right">246</td><td align="right">700</td><td align="center">true</td>
+<td>奇途接口自动化 1-1</td><td align="center">1</td><td align="right">80</td><td align="right">721</td><td align="center">true</td>
 </tr>
 </table>
 </div>
 </td>
 </tr>
 <tr valign="top" class="Failure">
-<td><a href="#%E9%A6%96%E9%A1%B5banner%EF%BC%8C%E6%8E%A8%E8%8D%90">首页banner，推荐</a></td><td align="center">1</td><td align="center">1</td><td align="right">0.00%</td><td align="right">39 ms</td><td align="right">39 ms</td><td align="right">39 ms</td><td align="center"><a href="javascript:change('page_details_2')"><img alt="expand/collapse" src="expand.png" id="page_details_2_image"></a></td>
+<td><a href="#%E9%A6%96%E9%A1%B5%E6%8E%A8%E8%8D%90 %EF%BC%9A/index/indexRecommendProduct">首页推荐 ：/index/indexRecommendProduct</a></td><td align="center">4</td><td align="center">2</td><td align="center">50.00%</td><td align="center">17 ms</td><td align="center">15 ms</td><td align="center">19 ms</td><td align="center"><a href="javascript:change('page_details_2')"><img alt="expand/collapse" src="expand.png" id="page_details_2_image"></a></td>
 </tr>
 <tr class="page_details" id="page_details_2">
 <td bgcolor="#FF0000" colspan="8">
 <div align="center">
-<b>Details for Page "首页banner，推荐"</b>
+<b>Details for Page "首页推荐 ：/index/indexRecommendProduct"</b>
 <table width="95%" cellspacing="1" cellpadding="1" border="0" bgcolor="#2674A6" bordercolor="#000000">
 <tr>
 <th>Thread</th><th>Iteration</th><th>Time (milliseconds)</th><th>Bytes</th><th>Success</th>
 </tr>
 <tr>
-<td>奇途接口自动化 1-1</td><td align="center">1</td><td align="right">39</td><td align="right">278</td><td align="center">false</td>
+<td>奇途接口自动化 1-1</td><td align="center">1</td><td align="right">19</td><td align="right">3222</td><td align="center">true</td>
+</tr>
+<tr>
+<td>奇途接口自动化 1-1</td><td align="center">2</td><td align="right">18</td><td align="right">285</td><td align="center">false</td>
+</tr>
+<tr>
+<td>奇途接口自动化 1-1</td><td align="center">3</td><td align="right">15</td><td align="right">285</td><td align="center">false</td>
+</tr>
+<tr>
+<td>奇途接口自动化 1-1</td><td align="center">4</td><td align="right">17</td><td align="right">3222</td><td align="center">true</td>
 </tr>
 </table>
 </div>
 </td>
 </tr>
-<tr valign="top" class="Failure">
-<td><a href="#%E9%A6%96%E9%A1%B5banner">首页banner</a></td><td align="center">1</td><td align="center">1</td><td align="right">0.00%</td><td align="right">153 ms</td><td align="right">153 ms</td><td align="right">153 ms</td><td align="center"><a href="javascript:change('page_details_3')"><img alt="expand/collapse" src="expand.png" id="page_details_3_image"></a></td>
+<tr valign="top" class="">
+<td>首页banner ：/index/index</td><td align="center">4</td><td align="center">0</td><td align="center">100.00%</td><td align="center">17 ms</td><td align="center">15 ms</td><td align="center">22 ms</td><td align="center"><a href="javascript:change('page_details_3')"><img alt="expand/collapse" src="expand.png" id="page_details_3_image"></a></td>
 </tr>
 <tr class="page_details" id="page_details_3">
 <td bgcolor="#FF0000" colspan="8">
 <div align="center">
-<b>Details for Page "首页banner"</b>
+<b>Details for Page "首页banner ：/index/index"</b>
 <table width="95%" cellspacing="1" cellpadding="1" border="0" bgcolor="#2674A6" bordercolor="#000000">
 <tr>
 <th>Thread</th><th>Iteration</th><th>Time (milliseconds)</th><th>Bytes</th><th>Success</th>
 </tr>
 <tr>
-<td>奇途接口自动化 1-1</td><td align="center">1</td><td align="right">153</td><td align="right">1492</td><td align="center">false</td>
+<td>奇途接口自动化 1-1</td><td align="center">1</td><td align="right">22</td><td align="right">1309</td><td align="center">true</td>
+</tr>
+<tr>
+<td>奇途接口自动化 1-1</td><td align="center">2</td><td align="right">15</td><td align="right">1309</td><td align="center">true</td>
+</tr>
+<tr>
+<td>奇途接口自动化 1-1</td><td align="center">3</td><td align="right">15</td><td align="right">1309</td><td align="center">true</td>
+</tr>
+<tr>
+<td>奇途接口自动化 1-1</td><td align="center">4</td><td align="right">15</td><td align="right">1309</td><td align="center">true</td>
 </tr>
 </table>
 </div>
@@ -178,24 +201,17 @@
 </table>
 <hr align="center" width="95%" size="1">
 <h2>Failure Detail</h2>
-<h3>首页banner，推荐<a name="%E9%A6%96%E9%A1%B5banner%EF%BC%8C%E6%8E%A8%E8%8D%90"></a>
+<h3>首页推荐 ：/index/indexRecommendProduct<a name="%E9%A6%96%E9%A1%B5%E6%8E%A8%E8%8D%90 %EF%BC%9A/index/indexRecommendProduct"></a>
 </h3>
-<table width="95%" cellspacing="2" cellpadding="5" border="0" class="details" align="center">
+<table style="word-break:break-all" width="95%" cellspacing="2" cellpadding="5" border="0" class="details" align="center">
 <tr valign="top">
-<th style="width='10'">Response</th><th>Failure Message</th><th style="word-break='break-all' ;">Response Data</th>
+<th width="80px">Response</th><th width="200px">Failure Message</th><th>Response Data</th>
 </tr>
 <tr>
-<td id="status">200 - OK</td><td>Test failed: text expected to contain /333/</td><td>{"code":1,"msg":"ok","data":{"total_page":0,"list":[]}}</td>
-</tr>
-</table>
-<h3>首页banner<a name="%E9%A6%96%E9%A1%B5banner"></a>
-</h3>
-<table width="95%" cellspacing="2" cellpadding="5" border="0" class="details" align="center">
-<tr valign="top">
-<th style="width='10'">Response</th><th>Failure Message</th><th style="word-break='break-all' ;">Response Data</th>
+<td align="center" id="status">200 - OK</td><td align="center">断言失败，不包含长沙</td><td style="word-break:break-all">{"code":1,"msg":"ok","data":{"total_page":0,"list":[]}}</td>
 </tr>
 <tr>
-<td id="status">200 - OK</td><td>Test failed: text expected to contain /14726968415/</td><td>{"code":1,"msg":"ok","data":{"banner":[{"url":"http:\/\/www.tuniu.com\/trips\/10085973","img":"http:\/\/img.travel.com\/uploads\/ads\/201606271740517872.jpg"},{"url":"","img":"http:\/\/img.travel.com\/uploads\/ads\/201606211743338731.jpg"},{"url":"http:\/\/www.baidu.com\/","img":"http:\/\/img.travel.com\/uploads\/ads\/201606211739299605.jpg"},{"url":"","img":"http:\/\/img.travel.com\/uploads\/ads\/201606211743126972.jpg"},{"url":"","img":"http:\/\/img.travel.com\/uploads\/ads\/201606211742296584.jpg"}],"theme":[{"id":"1","name":"\u82b1\u6d77","icon":"http:\/\/img.travel.com\/uploads\/theme\/201607041033245780.jpg","img":"http:\/\/img.travel.com\/uploads\/theme\/201606201342587715.jpg"},{"id":"3","name":"\u547c\u4f26\u8d1d\u5c14","icon":"http:\/\/img.travel.com\/uploads\/theme\/201606201735081457.jpg","img":"http:\/\/img.travel.com\/uploads\/theme\/201606201735087827.jpg"},{"id":"4","name":"\u5403\u5403\u5403","icon":"http:\/\/img.travel.com\/uploads\/theme\/201606220934034578.jpg","img":"http:\/\/img.travel.com\/uploads\/theme\/201606220934031634.jpg"},{"id":"14","name":"\u4f0a\u65af\u5766\u5e03\u5c14","icon":"http:\/\/img.travel.com\/uploads\/theme\/201606271004534543.jpg","img":"http:\/\/img.travel.com\/uploads\/theme\/201606271004534471.jpg"}]}}</td>
+<td align="center" id="status">200 - OK</td><td align="center">断言失败，不包含长沙</td><td style="word-break:break-all">{"code":1,"msg":"ok","data":{"total_page":0,"list":[]}}</td>
 </tr>
 </table>
 </body>
