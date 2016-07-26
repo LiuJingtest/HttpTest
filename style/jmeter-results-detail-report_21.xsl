@@ -134,7 +134,7 @@
 	<table width="100%">
 		<tr>
 			<td align="left">Date report: <xsl:value-of select="$dateReport" /></td>
-			<td align="right">Designed for use with <a href="http://jmeter.apache.org/">JMeter</a> and <a href="http://ant.apache.org">Ant</a>.</td>
+			<td align="right"><a href="../htmlDebug/TestReport.html">单个接口测试报告 </a></td>
 		</tr>
 	</table>
 	<hr size="1" />
@@ -288,7 +288,7 @@
                            <xsl:attribute name="id"><xsl:text/>page_details_<xsl:value-of select="position()" /></xsl:attribute>
                            <td colspan="8" bgcolor="#FF0000">
                               <div align="center">
-			         <b>Details for Page "<xsl:value-of select="$label" />"</b>
+			         <b>Details for Interface "<xsl:value-of select="$label" />"</b>
 			         <table bordercolor="#000000" bgcolor="#2674A6" border="0"  cellpadding="1" cellspacing="1" width="95%">
 			         <tr>
 			            <th>Thread</th>

@@ -12,7 +12,7 @@
                 * { margin: 0; padding: 0 }
                 html, body { width: 100%; height: 100%; background: #b4b4b4; font-size: 12px }
                 table { border: none; border-collapse: collapse; table-layout: fixed }
-                td { vertical-align: baseline; font-size: 12px }
+                td { vertical-align: baseline; font-size: 12px; word-break:break-all ;}
                 #left-panel { position: absolute; left: 0; top: 0; bottom: 0; width: 300px; overflow: auto; background: #dee4ea }
                 #left-panel li.navigation { font-weight: bold; cursor: default; color: #9da8b2; line-height: 18px; background-position: 12px 5px; background-repeat: no-repeat; padding: 0 0 0 25px; background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAICAYAAAArzdW1AAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9sDEBQqGbO7BEcAAAAdaVRYdENvbW1lbnQAAAAAAENyZWF0ZWQgd2l0aCBHSU1QZC5lBwAAAKRJREFUGNN1zM0KgkAYheF3RvtXSsGyWhRNaILS7bdt11W0KgJvoPwZp0UlBPUtz3nOJw7Hk7necv5dOA2Qaazo2vZP0LEt9olCVtqQROufKNmuqBuBNAYW4QzXGX6B0bDPcjGnMQYJ8Cg12U59oSzaUJQa4IUAXMclDHwAAn/MxPMw765FZd2QRgopBWmsKCrdfhXnS/4ZYElBXdyxewN008Y8AephLAkqz613AAAAAElFTkSuQmCC) }
                 #left-panel li.success { color: #565b60 }
@@ -27,7 +27,7 @@
                 #right-panel .group { font-size: 12px; font-weight: bold; line-height: 16px; padding: 0 0 0 18px; counter-reset: assertion; background-repeat: repeat-x; background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAQCAYAAADXnxW3AAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9sDEBUkDq8pxjkAAAAdaVRYdENvbW1lbnQAAAAAAENyZWF0ZWQgd2l0aCBHSU1QZC5lBwAAADdJREFUCNdVxrERwDAMAzGK0v47eS6Z927SpMFBAAbkvSvnRk5+7K5cVfLMyN39bWakJAjA5xw9R94jN3tVhVEAAAAASUVORK5CYII=) }
                 #right-panel .zebra { background-repeat: repeat; padding: 0 0 0 18px; background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAmCAYAAAAFvPEHAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9sDEBYWFlNztEcAAAAdaVRYdENvbW1lbnQAAAAAAENyZWF0ZWQgd2l0aCBHSU1QZC5lBwAAABdJREFUCNdjYKAtePv5338mBgYGBpoQAGy1BAJlb/y6AAAAAElFTkSuQmCC) }
                 #right-panel .data { line-height: 19px; white-space: nowrap }
-                #right-panel pre.data { white-space: pre }
+                #right-panel pre.data { white-space: pre; white-space: pre-wrap;       white-space: -moz-pre-wrap;  white-space: -pre-wrap;      white-space: -o-pre-wrap;  }
                 #right-panel tbody.failure { color: red }
                 #right-panel td.key { min-width: 108px }
                 #right-panel td.delimiter { min-width: 18px }
@@ -113,10 +113,10 @@
         <body>
             <div id="left-panel">
                 <ol id="result-list">
-                    <xsl:for-each select="*">
+                    <xsl:for-each select="*[@lb != '获取测试数据']">
                         <!-- group with the previous sibling -->
                         <xsl:if test="position() = 1 or @tn != preceding-sibling::*[1]/@tn">
-                            <li class="navigation">Thread: <xsl:value-of select="@tn"/></li>
+                            <li class="navigation"> <xsl:value-of select="@tn"/></li>
                         </xsl:if>
                         <li onclick="return onclick_li(this);">
                             <div>
@@ -187,6 +187,7 @@
                             </div>
                         </li>
                     </xsl:for-each>
+					<div id="report"><a align="right" href="../html/TestReport.html">统计接口测试报告 </a></div>
                 </ol>
             </div>
             <div id="right-panel"></div>

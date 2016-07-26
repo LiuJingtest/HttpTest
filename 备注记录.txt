@@ -8,9 +8,11 @@
 	System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")
 	
 优化：
-	1.两份报告的跳转
+	1.两份报告的跳转（已完成）
 	2.excel读取与写入
 	3.报告utf-8编码的中文显示输出
 	4.报告输出json格式化
-	5.中文与utf-8编码的比较
-	6.排除报告中没用的接口
+	5.中文与utf-8编码的比较（已完成）
+	6.排除报告中没用的接口（已完成）
+	7.断言diff
+	8.excel控制用例的运行（已完成）
