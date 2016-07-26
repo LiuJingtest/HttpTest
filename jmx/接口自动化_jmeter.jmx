@@ -17,7 +17,7 @@
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.num_threads">10</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
         <longProp name="ThreadGroup.start_time">1468898870000</longProp>
         <longProp name="ThreadGroup.end_time">1468898870000</longProp>
@@ -187,6 +187,7 @@ try {
 XSSFSheet excelWSheet = excelWBook.getSheet(&quot;test&quot;);
 
 String casenum = String.valueOf(excelWSheet.getLastRowNum());
+log.info(&quot;----------------------------------------------------&quot;+casenum);
 vars.put(&quot;casenum&quot;,casenum);
 </stringProp>
           </BeanShellPreProcessor>
@@ -260,36 +261,52 @@ XSSFSheet excelWSheet = excelWBook.getSheet(&quot;test&quot;);
 String num1 = vars.get(&quot;num&quot;);
 int num = Integer.valueOf(num1).intValue();
 
-vars.put(&quot;run&quot;,(String)excelWSheet.getRow(num).getCell(1).getStringCellValue());
-vars.put(&quot;case_name&quot;,(String)excelWSheet.getRow(num).getCell(2).getStringCellValue());
-vars.put(&quot;interface_name&quot;,(String)excelWSheet.getRow(num).getCell(3).getStringCellValue());
-vars.put(&quot;url&quot;,(String)excelWSheet.getRow(num).getCell(4).getStringCellValue());
-vars.put(&quot;method&quot;,(String)excelWSheet.getRow(num).getCell(5).getStringCellValue());
-vars.put(&quot;scenes&quot;,(String)excelWSheet.getRow(num).getCell(6).getStringCellValue());
-vars.put(&quot;auth_app_mark&quot;,(String)excelWSheet.getRow(num).getCell(7).getStringCellValue());
-vars.put(&quot;user_id_mark&quot;,(String)excelWSheet.getRow(num).getCell(7).getStringCellValue());
-
-if(excelWSheet.getRow(num).getCell(9)!=null){
-	vars.put(&quot;request&quot;,(String)excelWSheet.getRow(num).getCell(9).getStringCellValue());
-}else{
-	vars.put(&quot;request&quot;,&quot;&quot;);
-}
-
-String response = (String)excelWSheet.getRow(num).getCell(10).getStringCellValue();
-vars.put(&quot;response&quot;,response);
-//中文进行utf8编码
-
-StringBuffer output = new StringBuffer();
-for (int i = 0; i &lt; response.length(); i++)
-{
-	if(!(response.charAt(i) &gt;= 0x4E00 &amp;&amp;  response.charAt(i) &lt;= 0x9FA5)){
-		output.append(response.charAt(i));
+if(((String)excelWSheet.getRow(num).getCell(1).getStringCellValue()).equals(&quot;YES&quot;)){
+	vars.put(&quot;run&quot;,&quot;YES&quot;);
+	vars.put(&quot;case_name&quot;,(String)excelWSheet.getRow(num).getCell(2).getStringCellValue());
+	vars.put(&quot;interface_name&quot;,(String)excelWSheet.getRow(num).getCell(3).getStringCellValue());
+	vars.put(&quot;url&quot;,(String)excelWSheet.getRow(num).getCell(4).getStringCellValue());
+	vars.put(&quot;method&quot;,(String)excelWSheet.getRow(num).getCell(5).getStringCellValue());
+	vars.put(&quot;scenes&quot;,(String)excelWSheet.getRow(num).getCell(6).getStringCellValue());
+	vars.put(&quot;auth_app_mark&quot;,(String)excelWSheet.getRow(num).getCell(7).getStringCellValue());
+	vars.put(&quot;user_id_mark&quot;,(String)excelWSheet.getRow(num).getCell(8).getStringCellValue());
+	vars.put(&quot;token_mark&quot;,(String)excelWSheet.getRow(num).getCell(9).getStringCellValue());
+	
+	if(excelWSheet.getRow(num).getCell(10)!=null){
+		vars.put(&quot;request&quot;,(String)excelWSheet.getRow(num).getCell(10).getStringCellValue());
 	}else{
-		output.append(&quot;\\u&quot; +Integer.toString(response.charAt(i), 16));
+		vars.put(&quot;request&quot;,&quot;&quot;);
 	}
+	
+	String response = (String)excelWSheet.getRow(num).getCell(11).getStringCellValue();
+	vars.put(&quot;response&quot;,response);
+	//中文进行utf8编码
+	
+	StringBuffer output = new StringBuffer();
+	for (int i = 0; i &lt; response.length(); i++)
+	{
+		if(!(response.charAt(i) &gt;= 0x4E00 &amp;&amp;  response.charAt(i) &lt;= 0x9FA5)){
+			output.append(response.charAt(i));
+		}else{
+			output.append(&quot;\\u&quot; +Integer.toString(response.charAt(i), 16));
+		}
+	}
+	
+	vars.put(&quot;response_utf8&quot;,output.toString());
+}else{
+	vars.put(&quot;run&quot;,&quot;NO&quot;);
+	vars.put(&quot;case_name&quot;,&quot;&quot;);
+	vars.put(&quot;interface_name&quot;,&quot;&quot;);
+	vars.put(&quot;url&quot;,&quot;&quot;);
+	vars.put(&quot;method&quot;,&quot;&quot;);
+	vars.put(&quot;scenes&quot;,&quot;&quot;);
+	vars.put(&quot;auth_app_mark&quot;,&quot;NO&quot;);
+	vars.put(&quot;user_id_mark&quot;,&quot;NO&quot;);
+	vars.put(&quot;request&quot;,&quot;&quot;);
+	vars.put(&quot;response&quot;,&quot;&quot;);
+	vars.put(&quot;response_utf8&quot;,&quot;&quot;);
 }
 
-vars.put(&quot;response_utf8&quot;,output.toString());
 
 
 </stringProp>
@@ -306,7 +323,56 @@ vars.put(&quot;response_utf8&quot;,output.toString());
               <boolProp name="IfController.evaluateAll">false</boolProp>
             </IfController>
             <hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${name} ：${url}" enabled="true">
+              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="需要token" enabled="true">
+                <stringProp name="IfController.condition">&quot;${token_mark}&quot; == &quot;YES&quot;</stringProp>
+                <boolProp name="IfController.evaluateAll">false</boolProp>
+              </IfController>
+              <hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取测试数据" enabled="true">
+                  <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                    <collectionProp name="Arguments.arguments">
+                      <elementProp name="" elementType="HTTPArgument">
+                        <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                        <stringProp name="Argument.value">auth_app=${auth_app}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain"></stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.protocol"></stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">/purchase/getToken</stringProp>
+                  <stringProp name="HTTPSampler.method">POST</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <boolProp name="HTTPSampler.monitor">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="获取token" enabled="true">
+                    <stringProp name="JSONPostProcessor.referenceNames">token</stringProp>
+                    <stringProp name="JSONPostProcessor.jsonPathExprs">data.token</stringProp>
+                    <stringProp name="JSONPostProcessor.match_numbers">0</stringProp>
+                  </JSONPostProcessor>
+                  <hashTree/>
+                  <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="修改请求" enabled="true">
+                    <boolProp name="resetInterpreter">false</boolProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="script">String request = vars.get(&quot;request&quot;);
+request = request + &quot;&amp;token=&quot; + vars.get(&quot;token&quot;);
+vars.put(&quot;request&quot;,request);</stringProp>
+                  </BeanShellPostProcessor>
+                  <hashTree/>
+                </hashTree>
+              </hashTree>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${interface_name} ：${url}" enabled="true">
                 <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
                 <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
                   <collectionProp name="Arguments.arguments">
@@ -369,13 +435,62 @@ if(!result.contains(expectResult_utf8))
               <boolProp name="IfController.evaluateAll">false</boolProp>
             </IfController>
             <hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${name} ：${url}" enabled="true">
+              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="需要token" enabled="true">
+                <stringProp name="IfController.condition">&quot;${token_mark}&quot; == &quot;YES&quot;</stringProp>
+                <boolProp name="IfController.evaluateAll">false</boolProp>
+              </IfController>
+              <hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取测试数据" enabled="true">
+                  <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                    <collectionProp name="Arguments.arguments">
+                      <elementProp name="" elementType="HTTPArgument">
+                        <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                        <stringProp name="Argument.value">auth_app=${auth_app}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain"></stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.protocol"></stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">/purchase/getToken</stringProp>
+                  <stringProp name="HTTPSampler.method">POST</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <boolProp name="HTTPSampler.monitor">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="获取token" enabled="true">
+                    <stringProp name="JSONPostProcessor.referenceNames">token</stringProp>
+                    <stringProp name="JSONPostProcessor.jsonPathExprs">data.token</stringProp>
+                    <stringProp name="JSONPostProcessor.match_numbers">0</stringProp>
+                  </JSONPostProcessor>
+                  <hashTree/>
+                  <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="修改请求" enabled="true">
+                    <boolProp name="resetInterpreter">false</boolProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="script">String request = vars.get(&quot;request&quot;);
+request = request + &quot;&amp;token=&quot; + vars.get(&quot;token&quot;);
+vars.put(&quot;request&quot;,request);</stringProp>
+                  </BeanShellPostProcessor>
+                  <hashTree/>
+                </hashTree>
+              </hashTree>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${interface_name} ：${url}" enabled="true">
                 <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
                 <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
                   <collectionProp name="Arguments.arguments">
                     <elementProp name="" elementType="HTTPArgument">
                       <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                      <stringProp name="Argument.value">${request}&amp;auth_app=${auth_app}&amp;user_id=${uid}</stringProp>
+                      <stringProp name="Argument.value">${request}&amp;auth_app=${auth_app}&amp;user_id=${uid}$token=${token}</stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                     </elementProp>
                   </collectionProp>
@@ -406,7 +521,6 @@ if(!result.contains(expectResult_utf8))
 {
 	Failure=true;   
 	FailureMessage=&quot;断言失败，不包含&quot;+new String(expectResult);    
-	//FailureMessage=&quot;result-----&quot;+result+&quot;\nexpectResult-----&quot;+expectResult;
 }else{
 	Failure=false;
 }
@@ -436,7 +550,56 @@ if(!result.contains(expectResult_utf8))
               <boolProp name="IfController.evaluateAll">false</boolProp>
             </IfController>
             <hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${name} ：${url}" enabled="true">
+              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="需要token" enabled="true">
+                <stringProp name="IfController.condition">&quot;${token_mark}&quot; == &quot;YES&quot;</stringProp>
+                <boolProp name="IfController.evaluateAll">false</boolProp>
+              </IfController>
+              <hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取测试数据" enabled="true">
+                  <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                    <collectionProp name="Arguments.arguments">
+                      <elementProp name="" elementType="HTTPArgument">
+                        <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                        <stringProp name="Argument.value">auth_app=${auth_app}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain"></stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.protocol"></stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">/purchase/getToken</stringProp>
+                  <stringProp name="HTTPSampler.method">POST</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <boolProp name="HTTPSampler.monitor">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="获取token" enabled="true">
+                    <stringProp name="JSONPostProcessor.referenceNames">token</stringProp>
+                    <stringProp name="JSONPostProcessor.jsonPathExprs">data.token</stringProp>
+                    <stringProp name="JSONPostProcessor.match_numbers">0</stringProp>
+                  </JSONPostProcessor>
+                  <hashTree/>
+                  <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="修改请求" enabled="true">
+                    <boolProp name="resetInterpreter">false</boolProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="script">String request = vars.get(&quot;request&quot;);
+request = request + &quot;&amp;token=&quot; + vars.get(&quot;token&quot;);
+vars.put(&quot;request&quot;,request);</stringProp>
+                  </BeanShellPostProcessor>
+                  <hashTree/>
+                </hashTree>
+              </hashTree>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${interface_name} ：${url}" enabled="true">
                 <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
                 <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
                   <collectionProp name="Arguments.arguments">
@@ -499,7 +662,56 @@ if(!result.contains(expectResult_utf8))
               <boolProp name="IfController.evaluateAll">false</boolProp>
             </IfController>
             <hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${name} ：${url}" enabled="true">
+              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="需要token" enabled="true">
+                <stringProp name="IfController.condition">&quot;${token_mark}&quot; == &quot;YES&quot;</stringProp>
+                <boolProp name="IfController.evaluateAll">false</boolProp>
+              </IfController>
+              <hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取测试数据" enabled="true">
+                  <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                    <collectionProp name="Arguments.arguments">
+                      <elementProp name="" elementType="HTTPArgument">
+                        <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                        <stringProp name="Argument.value">auth_app=${auth_app}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain"></stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.protocol"></stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">/purchase/getToken</stringProp>
+                  <stringProp name="HTTPSampler.method">POST</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <boolProp name="HTTPSampler.monitor">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="获取token" enabled="true">
+                    <stringProp name="JSONPostProcessor.referenceNames">token</stringProp>
+                    <stringProp name="JSONPostProcessor.jsonPathExprs">data.token</stringProp>
+                    <stringProp name="JSONPostProcessor.match_numbers">0</stringProp>
+                  </JSONPostProcessor>
+                  <hashTree/>
+                  <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="修改请求" enabled="true">
+                    <boolProp name="resetInterpreter">false</boolProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="script">String request = vars.get(&quot;request&quot;);
+request = request + &quot;&amp;token=&quot; + vars.get(&quot;token&quot;);
+vars.put(&quot;request&quot;,request);</stringProp>
+                  </BeanShellPostProcessor>
+                  <hashTree/>
+                </hashTree>
+              </hashTree>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${interface_name} ：${url}" enabled="true">
                 <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
                 <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
                   <collectionProp name="Arguments.arguments">
@@ -524,6 +736,7 @@ if(!result.contains(expectResult_utf8))
                 <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
                 <boolProp name="HTTPSampler.monitor">false</boolProp>
                 <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                <stringProp name="TestPlan.comments">测试12312312312</stringProp>
               </HTTPSamplerProxy>
               <hashTree>
                 <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="断言" enabled="true">
@@ -566,7 +779,56 @@ if(!result.contains(expectResult_utf8))
               <boolProp name="IfController.evaluateAll">false</boolProp>
             </IfController>
             <hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${name} ：${url}" enabled="true">
+              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="需要token" enabled="true">
+                <stringProp name="IfController.condition">&quot;${token_mark}&quot; == &quot;YES&quot;</stringProp>
+                <boolProp name="IfController.evaluateAll">false</boolProp>
+              </IfController>
+              <hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取测试数据" enabled="true">
+                  <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                    <collectionProp name="Arguments.arguments">
+                      <elementProp name="" elementType="HTTPArgument">
+                        <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                        <stringProp name="Argument.value">auth_app=${auth_app}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain"></stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.protocol"></stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">/purchase/getToken</stringProp>
+                  <stringProp name="HTTPSampler.method">POST</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <boolProp name="HTTPSampler.monitor">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="获取token" enabled="true">
+                    <stringProp name="JSONPostProcessor.referenceNames">token</stringProp>
+                    <stringProp name="JSONPostProcessor.jsonPathExprs">data.token</stringProp>
+                    <stringProp name="JSONPostProcessor.match_numbers">0</stringProp>
+                  </JSONPostProcessor>
+                  <hashTree/>
+                  <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="修改请求" enabled="true">
+                    <boolProp name="resetInterpreter">false</boolProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="script">String request = vars.get(&quot;request&quot;);
+request = request + &quot;&amp;token=&quot; + vars.get(&quot;token&quot;);
+vars.put(&quot;request&quot;,request);</stringProp>
+                  </BeanShellPostProcessor>
+                  <hashTree/>
+                </hashTree>
+              </hashTree>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${interface_name} ：${url}" enabled="true">
                 <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
                 <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
                   <collectionProp name="Arguments.arguments">
@@ -629,7 +891,56 @@ if(!result.contains(expectResult_utf8))
               <boolProp name="IfController.evaluateAll">false</boolProp>
             </IfController>
             <hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${name} ：${url}" enabled="true">
+              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="需要token" enabled="true">
+                <stringProp name="IfController.condition">&quot;${token_mark}&quot; == &quot;YES&quot;</stringProp>
+                <boolProp name="IfController.evaluateAll">false</boolProp>
+              </IfController>
+              <hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取测试数据" enabled="true">
+                  <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                    <collectionProp name="Arguments.arguments">
+                      <elementProp name="" elementType="HTTPArgument">
+                        <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                        <stringProp name="Argument.value">auth_app=${auth_app}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain"></stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.protocol"></stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">/purchase/getToken</stringProp>
+                  <stringProp name="HTTPSampler.method">POST</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <boolProp name="HTTPSampler.monitor">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="获取token" enabled="true">
+                    <stringProp name="JSONPostProcessor.referenceNames">token</stringProp>
+                    <stringProp name="JSONPostProcessor.jsonPathExprs">data.token</stringProp>
+                    <stringProp name="JSONPostProcessor.match_numbers">0</stringProp>
+                  </JSONPostProcessor>
+                  <hashTree/>
+                  <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="修改请求" enabled="true">
+                    <boolProp name="resetInterpreter">false</boolProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="script">String request = vars.get(&quot;request&quot;);
+request = request + &quot;&amp;token=&quot; + vars.get(&quot;token&quot;);
+vars.put(&quot;request&quot;,request);</stringProp>
+                  </BeanShellPostProcessor>
+                  <hashTree/>
+                </hashTree>
+              </hashTree>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${interface_name} ：${url}" enabled="true">
                 <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
                 <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
                   <collectionProp name="Arguments.arguments">
@@ -686,7 +997,7 @@ if(!result.contains(expectResult_utf8))
               <hashTree/>
             </hashTree>
           </hashTree>
-          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="需要auth_app" enabled="true">
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="只需要auth_app" enabled="true">
             <stringProp name="IfController.condition">&quot;${auth_app_mark}&quot; == &quot;YES&quot; &amp;&amp; &quot;${user_id_mark}&quot; == &quot;NO&quot;</stringProp>
             <boolProp name="IfController.evaluateAll">false</boolProp>
           </IfController>
@@ -696,7 +1007,56 @@ if(!result.contains(expectResult_utf8))
               <boolProp name="IfController.evaluateAll">false</boolProp>
             </IfController>
             <hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${name} ：${url}" enabled="true">
+              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="需要token" enabled="true">
+                <stringProp name="IfController.condition">&quot;${token_mark}&quot; == &quot;YES&quot;</stringProp>
+                <boolProp name="IfController.evaluateAll">false</boolProp>
+              </IfController>
+              <hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取测试数据" enabled="true">
+                  <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                    <collectionProp name="Arguments.arguments">
+                      <elementProp name="" elementType="HTTPArgument">
+                        <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                        <stringProp name="Argument.value">auth_app=${auth_app}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain"></stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.protocol"></stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">/purchase/getToken</stringProp>
+                  <stringProp name="HTTPSampler.method">POST</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <boolProp name="HTTPSampler.monitor">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="获取token" enabled="true">
+                    <stringProp name="JSONPostProcessor.referenceNames">token</stringProp>
+                    <stringProp name="JSONPostProcessor.jsonPathExprs">data.token</stringProp>
+                    <stringProp name="JSONPostProcessor.match_numbers">0</stringProp>
+                  </JSONPostProcessor>
+                  <hashTree/>
+                  <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="修改请求" enabled="true">
+                    <boolProp name="resetInterpreter">false</boolProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="script">String request = vars.get(&quot;request&quot;);
+request = request + &quot;&amp;token=&quot; + vars.get(&quot;token&quot;);
+vars.put(&quot;request&quot;,request);</stringProp>
+                  </BeanShellPostProcessor>
+                  <hashTree/>
+                </hashTree>
+              </hashTree>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${interface_name} ：${url}" enabled="true">
                 <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
                 <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
                   <collectionProp name="Arguments.arguments">
@@ -759,7 +1119,56 @@ if(!result.contains(expectResult_utf8))
               <boolProp name="IfController.evaluateAll">false</boolProp>
             </IfController>
             <hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${name} ：${url}" enabled="true">
+              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="需要token" enabled="true">
+                <stringProp name="IfController.condition">&quot;${token_mark}&quot; == &quot;YES&quot;</stringProp>
+                <boolProp name="IfController.evaluateAll">false</boolProp>
+              </IfController>
+              <hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取测试数据" enabled="true">
+                  <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                    <collectionProp name="Arguments.arguments">
+                      <elementProp name="" elementType="HTTPArgument">
+                        <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                        <stringProp name="Argument.value">auth_app=${auth_app}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain"></stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.protocol"></stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">/purchase/getToken</stringProp>
+                  <stringProp name="HTTPSampler.method">POST</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <boolProp name="HTTPSampler.monitor">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="获取token" enabled="true">
+                    <stringProp name="JSONPostProcessor.referenceNames">token</stringProp>
+                    <stringProp name="JSONPostProcessor.jsonPathExprs">data.token</stringProp>
+                    <stringProp name="JSONPostProcessor.match_numbers">0</stringProp>
+                  </JSONPostProcessor>
+                  <hashTree/>
+                  <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="修改请求" enabled="true">
+                    <boolProp name="resetInterpreter">false</boolProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="script">String request = vars.get(&quot;request&quot;);
+request = request + &quot;&amp;token=&quot; + vars.get(&quot;token&quot;);
+vars.put(&quot;request&quot;,request);</stringProp>
+                  </BeanShellPostProcessor>
+                  <hashTree/>
+                </hashTree>
+              </hashTree>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${interface_name} ：${url}" enabled="true">
                 <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
                 <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
                   <collectionProp name="Arguments.arguments">
