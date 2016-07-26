@@ -284,21 +284,21 @@
 				</td>
 			</tr>
 			
-                        <tr class="page_details">
-                           <xsl:attribute name="id"><xsl:text/>page_details_<xsl:value-of select="position()" /></xsl:attribute>
-                           <td colspan="8" bgcolor="#FF0000">
-                              <div align="center">
-			         <b>Details for Interface "<xsl:value-of select="$label" />"</b>
-			         <table bordercolor="#000000" bgcolor="#2674A6" border="0"  cellpadding="1" cellspacing="1" width="95%">
-			         <tr>
+            <tr class="page_details">
+                <xsl:attribute name="id"><xsl:text/>page_details_<xsl:value-of select="position()" /></xsl:attribute>
+                <td colspan="8" bgcolor="#FF0000">
+                <div align="center">
+			        <b>Details for Interface "<xsl:value-of select="$label" />"</b>
+			        <table bordercolor="#000000" bgcolor="#2674A6" border="0"  cellpadding="1" cellspacing="1" width="95%">
+			        <tr>
 			            <th>Thread</th>
 			            <th>Iteration</th>
 			            <th>Time (milliseconds)</th>
 			            <th>Bytes</th>
 			            <th>Success</th>
-			         </tr>
+			        </tr>
 			         		         
-			         <xsl:for-each select="../*[@lb = $label and @tn != $label]">			         			            
+			        <xsl:for-each select="../*[@lb = $label and @tn != $label]">			         			            
 			            <tr>
 			               <td><xsl:value-of select="@tn" /></td>
 			               <td align="center"><xsl:value-of select="position()" /></td>
@@ -310,9 +310,9 @@
 			         </xsl:for-each>
 			         
 			         </table>
-			      </div>
+			    </div>
                            </td>
-                        </tr>
+            </tr>
 			
 		</xsl:for-each>
 	</table>
