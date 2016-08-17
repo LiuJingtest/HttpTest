@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - autotest_platform@localhost" uuid="7baba8ff-15d6-4449-9e6c-4c93073c126d">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>autotest_platform.*</schema-pattern>
+      <default-schemas>autotest_platform.*</default-schemas>
+    </data-source>
+  </component>
+</project>
